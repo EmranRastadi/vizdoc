@@ -1,13 +1,83 @@
+@font-face {
+  font-family: 'yekan';
+  src: url('./fonts/iran-yekan-400.eot');
+  src: url('./fonts/iran-yekan-400.woff') format('woff'),
+    url('./fonts/iran-yekan-400.ttf') format('opentype');
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  direction: rtl;
+  font-family: 'yekan' !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+input {
+  font-family: 'yekan' !important;
+}
+label {
+  font-family: 'yekan' !important;
+}
+
+span,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'yekan' !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@media screen and (max-width: 500px) {
+  .menu-in-big {
+    display: none !important;
+  }
+
+  .expButton {
+    display: none !important;
+  }
+  .menu-resp {
+    display: block !important;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .menu-in-big {
+    display: none !important;
+  }
+
+  #edit-button {
+    width: 40px !important;
+    height: 40px !important;
+    display: flex;
+    background: unset;
+    border: 1px solid rgb(241, 241, 241);
+    align-items: center;
+    justify-content: center;
+  }
+  #edit-button button {
+    font-size: 20px;
+    width: 40px !important;
+    height: 40px !important;
+    color: #aaa;
+  }
+
+  .expButton {
+    display: none !important;
+  }
+  .menu-resp {
+    display: block !important;
+  }
+}
+
+.menu-resp {
+  display: none;
 }

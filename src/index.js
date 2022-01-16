@@ -3,11 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-
+import createCache from '@emotion/cache';
+import rtlPlugin from 'stylis-plugin-rtl';
+import { CacheProvider } from '@emotion/react';
+const cacheRtl = createCache({
+  key: 'muirtl',
+  stylisPlugins: [rtlPlugin],
+});
 ReactDOM.render(
-  <React.StrictMode>
+  <CacheProvider value={cacheRtl}>
     <App />
-  </React.StrictMode>,
+  </CacheProvider>,
   document.getElementById('root')
 );
 
