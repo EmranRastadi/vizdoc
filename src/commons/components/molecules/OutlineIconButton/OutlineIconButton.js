@@ -4,7 +4,7 @@ import { Container } from './style';
 
 export default function OutlineIconButton(props) {
   return (
-    <Container>
+    <Container {...props}>
       <Button>
         {props.icon}
         <Label

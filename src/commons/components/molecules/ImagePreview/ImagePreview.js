@@ -7,7 +7,7 @@ export default function ImagePreview(props) {
       <Closer onClick={(e) => onClose(e)}>
         <AiOutlineClose />
       </Closer>
-      <Image src="./icons/AdobeStock_93387078.jpeg" />
+      <Image src={props.src} />
     </ImageContainer>
   );
 }

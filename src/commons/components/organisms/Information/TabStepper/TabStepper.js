@@ -9,19 +9,19 @@ export default function TabStepper(props) {
       <StepList>
         <StepItem
           className={step === 1 || step === 2 || step === 3 ? 'active' : ''}
-          onClick={() => setStep(0)}
+          // onClick={() => setStep(0)}
           num={1}
           title="تکمیل اطلاعات"
         />
         <StepItem
           className={step === 2 || step === 3 ? 'active' : ''}
-          onClick={() => setStep(1)}
+          // onClick={() => setStep(1)}
           num={2}
           title="آپلود آزمایش"
         />
         <StepItem
           className={step === 3 ? 'active' : ''}
-          onClick={() => setStep(2)}
+          // onClick={() => setStep(2)}
           num={3}
           title="بررسی نهایی"
         />

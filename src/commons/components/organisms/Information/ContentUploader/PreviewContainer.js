@@ -11,37 +11,21 @@ import {
 } from '../../../molecules';
 import { Card, Label } from '../../../atoms';
 import { BiEdit } from 'react-icons/bi';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { InforMationContext } from '../../../../services/Contexts/InformationStore.context';
 
-export default function PreviewContainer() {
-  const [labels, setLabels] = useState([
-    {
-      name: 'چکاپ کامل',
-    },
-    {
-      name: 'کرونا',
-    },
-    {
-      name: 'تست بارداری',
-    },
-    {
-      name: 'تست بارداری',
-    },
-    {
-      name: 'تست بارداری',
-    },
-    {
-      name: 'تست بارداری',
-    },
-    {
-      name: 'تست بارداری',
-    },
-    {
-      name: 'تست بارداری',
-    },
-  ]);
+export default function PreviewContainer(props) {
+  const { setStep } = props;
+  const { state } = useContext(InforMationContext);
 
   function onClickChip() {}
+
+  function _renderWhoIs() {
+    let gender = state.information.gender === 'female' ? 'خانم' : 'آقا';
+    let pregent = state.information.pregnant === '1' ? 'باردار' : '';
+    let age = state.information.age + ' ساله';
+    return gender + ' ' + pregent + ' ' + age;
+  }
   return (
     <Container>
       <Grid container spacing={3}>
@@ -49,14 +33,13 @@ export default function PreviewContainer() {
           <Card>
             <Grid container spacing={3}>
               <Grid item md={'8'} xs="12">
-                <Label style={{ fontSize: 15 }}>
-                  خانوم باردار 24 ساله از تهران
-                </Label>
+                <Label style={{ fontSize: 15 }}>{_renderWhoIs()}</Label>
               </Grid>
 
               <Grid item md="4" xs="12">
                 <OutlineIconButton
                   id="edit-button"
+                  onClick={() => setStep(0)}
                   title="ویرایش"
                   icon={<BiEdit color="#212121" />}
                 />
@@ -65,17 +48,26 @@ export default function PreviewContainer() {
                 <Label style={{ fontSize: 13, marginBottom: 10 }}>
                   نوع تفسیر
                 </Label>
-                <Tag>غیراورژانسی</Tag>
+                <Tag>
+                  {state.information.emergency === true
+                    ? 'اورژانسی'
+                    : 'غیر اورژانسی'}
+                </Tag>
               </Grid>
               <Grid item md="3" xs="6">
                 <Label style={{ fontSize: 13, marginBottom: 10 }}>
                   نوع پزشک
                 </Label>
-                <Tag>متخصص</Tag>
+                <Tag>
+                  {state.information.specialist === true ? 'متخصص' : 'عمومی'}
+                </Tag>
               </Grid>
 
               <Grid item md="6" xs="12">
-                <ImageSwipper chipData={labels} onClickChip={onClickChip} />
+                <ImageSwipper
+                  chipData={state.uploaded}
+                  onClickChip={onClickChip}
+                />
               </Grid>
             </Grid>
           </Card>

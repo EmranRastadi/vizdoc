@@ -5,6 +5,8 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import createCache from '@emotion/cache';
 import rtlPlugin from 'stylis-plugin-rtl';
+import { store } from './store';
+import { Provider } from 'react-redux';
 import { CacheProvider } from '@emotion/react';
 const cacheRtl = createCache({
   key: 'muirtl',
@@ -12,7 +14,9 @@ const cacheRtl = createCache({
 });
 ReactDOM.render(
   <CacheProvider value={cacheRtl}>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </CacheProvider>,
   document.getElementById('root')
 );

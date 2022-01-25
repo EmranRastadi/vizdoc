@@ -4,3 +4,5 @@ export { default as RenderTableExperiment } from './RenderTableExperiment/Render
 export { default as TabStepper } from './Information/TabStepper/TabStepper';
 export { default as ContentUploader } from './Information/ContentUploader/ContentUploader';
 export { default as Modal } from './Modal/Modal';
+export { default as VeifyMobile } from './Auth/VerifyMobile';
+export { default as VerifyCode } from './Auth/VerifyCode';

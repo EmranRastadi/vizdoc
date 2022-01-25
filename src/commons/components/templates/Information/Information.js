@@ -1,15 +1,25 @@
 import { Container, Grid } from '@mui/material';
+import { useEffect } from 'react';
 import { TabStepper } from '../../organisms';
 import { MainContainer } from '../Experiment/style';
 import CompleteInformation from './CompleteInformation';
 import Uploader from './Uploader';
 import { TabContents } from './style';
 import Preview from './Preview';
-import { InformationStore } from '../../../services/Contexts/InformationStore.context';
-import { useState } from 'react';
+import {
+  InforMationContext,
+  InformationStore,
+} from '../../../services/Contexts/InformationStore.context';
+import { useContext, useState } from 'react';
+import { useFetchServiceQuery } from '../../../apis/information-slice-api';
+import { Loading } from '../../molecules';
 
 export default function Information() {
+  // const { state } = useContext(InforMationContext);
   const [step, setStep] = useState(0);
+  // useEffect(() => {
+  //   setStep(state.tabSelected);
+  // }, [state]);
   return (
     <InformationStore>
       <MainContainer>
@@ -27,15 +37,15 @@ export default function Information() {
           >
             <Grid item md="8" xs="12">
               <TabContents className={step === 0 ? 'active' : null}>
-                <CompleteInformation />
+                <CompleteInformation setStep={setStep} />
               </TabContents>
 
               <TabContents className={step === 1 ? 'active' : null}>
-                <Uploader />
+                <Uploader setStep={setStep} />
               </TabContents>
 
               <TabContents className={step === 2 ? 'active' : null}>
-                <Preview />
+                <Preview setStep={setStep} />
               </TabContents>
             </Grid>
           </div>

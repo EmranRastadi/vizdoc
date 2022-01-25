@@ -7,7 +7,7 @@ const Container = styled.div`
 `;
 
 const Next = styled.div`
-  width: 50px;
+  width: 30px;
   position: absolute;
   height: 40px;
   z-index: 9;
@@ -21,7 +21,7 @@ const Next = styled.div`
   color: #212121;
 `;
 const Prev = styled.div`
-  width: 50px;
+  width: 30px;
   position: absolute;
   z-index: 9;
   height: 40px;

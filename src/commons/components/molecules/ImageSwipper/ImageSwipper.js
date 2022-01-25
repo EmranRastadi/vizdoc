@@ -1,8 +1,7 @@
 import { Tag } from '..';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper.scss';
-import { Container, Next, Prev, ImageSwipperItem } from './style';
-import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
+import { Container, Next, ImageSwipperItem } from './style';
 export default function ImageSwipper(props) {
   const { chipData, onClickChip } = props;
 
@@ -30,7 +29,7 @@ export default function ImageSwipper(props) {
                   <ImageSwipperItem
                     style={{ cursor: 'pointer' }}
                     key={index}
-                    src="./icons/AdobeStock_93387078.jpeg"
+                    src={URL.createObjectURL(item)}
                     onClick={onClickChip}
                   />
                 </SwiperSlide>

@@ -26,8 +26,18 @@ const ContainerImageAdd = styled.div`
   font-size: 100px;
   color: #aaa;
   border-radius: 10px;
+  position: relative;
   cursor: pointer;
   border: 2px dashed #ccc;
+  input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    opacity: 0;
+    cursor: pointer !important;
+    left: 0;
+  }
 `;
 
 export { TabContents, Container, ContainerImageAdd };

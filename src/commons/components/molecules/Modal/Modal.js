@@ -7,6 +7,7 @@ export default function Modal(props) {
   function onClose(e) {
     e.preventDefault();
     setShow(false);
+    props.setShow(false);
   }
 
   useEffect(() => {
@@ -14,7 +15,7 @@ export default function Modal(props) {
   }, [props.show]);
   return (
     <ModalBackground className={show ? 'active' : ''} {...props}>
-      <Container maxWidth="sm">
+      <Container maxWidth="md">
         <Grid container spacing={3}>
           <Grid
             item
@@ -25,7 +26,7 @@ export default function Modal(props) {
               justifyContent: 'center',
             }}
           >
-            <ImagePreview onClose={onClose} />
+            <ImagePreview src={props.src} onClose={onClose} />
           </Grid>
         </Grid>
       </Container>

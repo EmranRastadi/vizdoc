@@ -14,3 +14,4 @@ export { default as Modal } from './Modal/Modal';
 export { default as OutlineIconButton } from './OutlineIconButton/OutlineIconButton';
 export { default as ImageSwipper } from './ImageSwipper/ImageSwipper';
 export { default as ShowResultPrice } from './ShowResultPrice/ShowResultPrice';
+export { default as Loading } from './Loading/Loading';

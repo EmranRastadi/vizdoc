@@ -22,7 +22,7 @@ const ProgressUntil = styled.div`
   bottom: 2px;
   &:after {
     position: absolute;
-    content: '30%';
+    content: '${(props) => props.theme.progress.width}';
     color: #212121;
     right: 5px;
     top: 2px;

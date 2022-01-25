@@ -30,9 +30,9 @@ export default function LabelSwiper(props) {
                   <Tag
                     style={{ cursor: 'pointer' }}
                     key={index}
-                    onClick={onClickChip}
+                    onClick={() => onClickChip(item.word)}
                   >
-                    {item.name}
+                    {item.word}
                   </Tag>
                 </SwiperSlide>
               );

@@ -1,9 +1,40 @@
 import { Container, Grid } from '@mui/material';
+import { useContext, useState } from 'react';
+import { toast } from 'react-toastify';
+import { InforMationContext } from '../../../services/Contexts/InformationStore.context';
 import { Label } from '../../atoms';
 import { CheckBoxButton } from '../../molecules';
 import { ContentUploader } from '../../organisms';
 
-export default function Uploader() {
+export default function Uploader(props) {
+  const { setStep } = props;
+  const { state, dispatch } = useContext(InforMationContext);
+  const Msg = ({ text }) => (
+    <span
+      width={'100%'}
+      fontSize={'12px'}
+      textAlign={'right'}
+      color={'#212121'}
+    >
+      {text}
+    </span>
+  );
+  const notifyError = (msg) => toast.error(<Msg text={msg} />);
+  const notifySuccess = (msg) => toast.success(<Msg text={msg} />);
+  function gotToNextLevel(e) {
+    e.preventDefault();
+
+    if (state.uploadedId.length > 0) {
+      setStep(2);
+      dispatch({
+        type: 'TAB_SELECTED',
+        payload: 2,
+      });
+    } else {
+      notifyError('حداقل یک فایل انتخاب کنید');
+    }
+    // dispatch(setVisitInformation(data));
+  }
   return (
     <Container style={{ paddingBottom: 60 }}>
       <br />
@@ -22,7 +53,12 @@ export default function Uploader() {
       </Grid>
 
       <Grid item xs="12">
-        <CheckBoxButton onlyBtn={true} className="active" title={'مرحله بعد'} />
+        <CheckBoxButton
+          onClick={(e) => gotToNextLevel(e)}
+          onlyBtn={true}
+          className="active"
+          title={'مرحله بعد'}
+        />
       </Grid>
     </Container>
   );
