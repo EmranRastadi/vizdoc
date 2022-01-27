@@ -7,9 +7,10 @@ export default function VerifyMobile({
   submitFormVerifyMobile,
 }) {
   return (
-    <>
+    <div style={{ position: 'relative', width: '100%', height: '100%' }}>
+      {loading ? <Loading style={{ height: '100%' }} /> : null}
+
       <Grid item xs={'12'}>
-        {loading ? <Loading /> : null}
         <Label style={{ fontSize: 12, color: '#aaa' }}>
           لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
           استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
@@ -37,6 +38,6 @@ export default function VerifyMobile({
           title={'ثبت'}
         />
       </Grid>
-    </>
+    </div>
   );
 }

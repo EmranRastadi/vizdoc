@@ -23,9 +23,11 @@ import {
 } from '../../../apis/information.api';
 import { useDispatch } from 'react-redux';
 import { InforMationContext } from '../../../services/Contexts/InformationStore.context';
+import { useNotifyManager } from '../../../hooks/Toastify';
 
 export default function CompleteInformation(props) {
   const { setStep } = props;
+  const toastId = React.useRef(null);
   const { result: serviceData, isLoading: serviceLoading } =
     useFetchServiceQuery();
   const [filterWhy, setFilterWhy] = useState();
@@ -39,21 +41,10 @@ export default function CompleteInformation(props) {
   const [force, setForce] = useState(false);
   const [doctorType, setDoctorType] = useState('general');
   const { handleChange, data } = useChangeInput();
-  const Msg = ({ text }) => (
-    <span
-      width={'100%'}
-      fontSize={'12px'}
-      textAlign={'right'}
-      color={'#212121'}
-    >
-      {text}
-    </span>
-  );
-  const notifyError = (msg) => toast.error(<Msg text={msg} />);
-  const notifySuccess = (msg) => toast.success(<Msg text={msg} />);
+  const { notifyError } = useNotifyManager();
+
   function gotToNextLevel(e) {
     e.preventDefault();
-
     if (state.information.age) {
       setStep(1);
       dispatch({
@@ -63,7 +54,6 @@ export default function CompleteInformation(props) {
     } else {
       notifyError('سن را وارد کنید');
     }
-    // dispatch(setVisitInformation(data));
   }
 
   function addChipForDesc(val) {
@@ -82,6 +72,13 @@ export default function CompleteInformation(props) {
       },
     });
   }
+
+  useEffect(() => {
+    dispatch({
+      type: 'SERVICE_DATA',
+      payload: serviceData,
+    });
+  }, [serviceData]);
 
   useEffect(() => {
     let params = {

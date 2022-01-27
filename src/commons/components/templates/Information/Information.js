@@ -15,11 +15,8 @@ import { useFetchServiceQuery } from '../../../apis/information-slice-api';
 import { Loading } from '../../molecules';
 
 export default function Information() {
-  // const { state } = useContext(InforMationContext);
   const [step, setStep] = useState(0);
-  // useEffect(() => {
-  //   setStep(state.tabSelected);
-  // }, [state]);
+
   return (
     <InformationStore>
       <MainContainer>

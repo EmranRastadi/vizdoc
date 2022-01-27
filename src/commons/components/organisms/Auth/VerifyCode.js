@@ -14,7 +14,8 @@ export default function VerifyCode({
   return (
     <div style={{ position: 'relative' }}>
       <Grid item xs={'12'}>
-        {loadingCode ? <Loading /> : null}
+        {loadingCode ? <Loading style={{ height: '100%' }} /> : null}
+
         <Label style={{ fontSize: 12, color: '#aaa' }}>
           کد تایید به موبایل {mobile}{' '}
           <span

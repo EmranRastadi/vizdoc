@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BASE_URL } from '../constants/Types';
 import { useContext, useState } from 'react';
 import { InforMationContext } from '../services/Contexts/InformationStore.context';
+import { useNotifyManager } from '../hooks/Toastify';
 
 const useGetLabels = (params) => {
   const [result, setResult] = useState();
@@ -28,18 +29,23 @@ const useGetLabels = (params) => {
 const useFetchServiceQuery = (params) => {
   const [result, setResult] = useState({});
   const { dispatch } = useContext(InforMationContext);
+  const { notifyError } = useNotifyManager();
   const { ...qryParams } = useQuery(['service', params], () => {
     axios({
       method: 'GET',
       url: BASE_URL + `service/1`,
       params: params,
-    }).then((res) => {
-      dispatch({
-        type: 'SERVICE_DATA',
-        payload: res,
+    })
+      .then((res) => {
+        dispatch({
+          type: 'SERVICE_DATA',
+          payload: res,
+        });
+        setResult(res);
+      })
+      .catch((err) => {
+        notifyError('خطایی رخ داده است');
       });
-      setResult(res);
-    });
   });
 
   return { ...qryParams, result };

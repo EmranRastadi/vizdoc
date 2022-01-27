@@ -1,6 +1,7 @@
 import { Container, Grid } from '@mui/material';
 import { useContext, useState } from 'react';
 import { toast } from 'react-toastify';
+import { useNotifyManager } from '../../../hooks/Toastify';
 import { InforMationContext } from '../../../services/Contexts/InformationStore.context';
 import { Label } from '../../atoms';
 import { CheckBoxButton } from '../../molecules';
@@ -9,21 +10,9 @@ import { ContentUploader } from '../../organisms';
 export default function Uploader(props) {
   const { setStep } = props;
   const { state, dispatch } = useContext(InforMationContext);
-  const Msg = ({ text }) => (
-    <span
-      width={'100%'}
-      fontSize={'12px'}
-      textAlign={'right'}
-      color={'#212121'}
-    >
-      {text}
-    </span>
-  );
-  const notifyError = (msg) => toast.error(<Msg text={msg} />);
-  const notifySuccess = (msg) => toast.success(<Msg text={msg} />);
-  function gotToNextLevel(e) {
-    e.preventDefault();
-
+  const { notifyError } = useNotifyManager();
+  function gotToNextLevel(event) {
+    event.preventDefault();
     if (state.uploadedId.length > 0) {
       setStep(2);
       dispatch({
@@ -54,7 +43,7 @@ export default function Uploader(props) {
 
       <Grid item xs="12">
         <CheckBoxButton
-          onClick={(e) => gotToNextLevel(e)}
+          onClick={(event) => gotToNextLevel(event)}
           onlyBtn={true}
           className="active"
           title={'مرحله بعد'}

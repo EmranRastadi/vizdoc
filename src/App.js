@@ -27,7 +27,7 @@ function App() {
           <BrowserRouter>
             <RouterManager />
           </BrowserRouter>
-          <ToastContainer rtl />
+          <ToastContainer rtl newestOnTop={false} />
         </QueryClientProvider>
       </Provider>
     </StylesProvider>

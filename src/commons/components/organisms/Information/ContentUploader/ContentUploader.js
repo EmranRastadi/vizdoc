@@ -9,10 +9,12 @@ import { InforMationContext } from './../../../../services/Contexts/InformationS
 import { useCallback, useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import { BASE_URL } from '../../../../constants/Types';
+import { useNotifyManager } from '../../../../hooks/Toastify';
 
 export default function ContentUploader() {
   const { state, dispatch } = useContext(InforMationContext);
   const [progress, setProgress] = useState(0);
+  const { notifyError, notifySuccess } = useNotifyManager();
   function uploadFile(e) {
     e.preventDefault();
     const data = new FormData();
@@ -24,28 +26,35 @@ export default function ContentUploader() {
         setProgress(percent);
       },
     };
-
-    // let headers = {
-    //   'Content-Type': 'multipart/form-data',
-    // };
     let imageListClone = [...state.uploaded];
 
     imageListClone.push(e.target.files[0]);
+
     dispatch({
       type: 'UPLOADED',
       payload: imageListClone,
     });
-
-    axios.post(BASE_URL + `storage/upload/temp`, data, config).then((res) => {
-      let img_id = res?.data?.data?.file?.id;
-      let imgIdClone = [...state.uploadedId];
-      imgIdClone.push(img_id);
-      dispatch({
-        type: 'UPLOADED_ID',
-        payload: imgIdClone,
+    axios
+      .post(BASE_URL + `storage/upload/temp`, data, config)
+      .then((res) => {
+        let img_id = res?.data?.data?.file?.id;
+        let imgIdClone = [...state.uploadedId];
+        imgIdClone.push(img_id);
+        dispatch({
+          type: 'UPLOADED_ID',
+          payload: imgIdClone,
+        });
+        setProgress(0);
+        notifySuccess('با موفقیت آپلود شد');
+      })
+      .catch((e) => {
+        imageListClone.splice(-1, 1);
+        dispatch({
+          type: 'UPLOADED',
+          payload: imageListClone,
+        });
+        notifyError('خطایی رخ داده است');
       });
-      setProgress(0);
-    });
   }
 
   return (
