@@ -15,3 +15,9 @@ export { default as OutlineIconButton } from './OutlineIconButton/OutlineIconBut
 export { default as ImageSwipper } from './ImageSwipper/ImageSwipper';
 export { default as ShowResultPrice } from './ShowResultPrice/ShowResultPrice';
 export { default as Loading } from './Loading/Loading';
+export { default as ChatHeader } from './Chat/Header/Header';
+export { default as WhyDoIt } from './Chat/ChatItemCard/WhyDoIt';
+export { default as ImagePreDownload } from './ImagePreDownload/ImagePreDownload';
+export { default as LinkButton } from './LinkButton/LinkButton';
+export { default as DoctorDetail } from './Chat/DoctorDetail/DoctorDetail';
+export { default as TextChat } from './Chat/ChatItemCard/TextChat';

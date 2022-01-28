@@ -6,3 +6,5 @@ export { default as ContentUploader } from './Information/ContentUploader/Conten
 export { default as Modal } from './Modal/Modal';
 export { default as VeifyMobile } from './Auth/VerifyMobile';
 export { default as VerifyCode } from './Auth/VerifyCode';
+export { default as PatientChatContent } from './Chat/ChatContent/PatientChatContent';
+export { default as PatientAnswerBox } from './Chat/PatientAnswerBox/PatientAnswerBox';
