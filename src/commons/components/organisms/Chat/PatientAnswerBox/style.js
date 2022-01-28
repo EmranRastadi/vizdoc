@@ -3,8 +3,10 @@ const Container = styled.div`
   width: 100%;
   height: 110px;
   display: flex;
+  position: relative;
   align-items: center;
   flex-direction: row;
+  overflow: hidden;
   column-gap: 20px;
   justify-content: center;
 `;
@@ -14,6 +16,7 @@ const Main = styled.div`
   border-radius: 10px;
   flex: 1;
   margin: 0 15px;
+  column-gap: 15px;
   height: 50px;
   display: flex;
   flex-direction: row;

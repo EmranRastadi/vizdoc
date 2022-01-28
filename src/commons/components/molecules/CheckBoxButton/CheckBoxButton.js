@@ -3,9 +3,9 @@ import { Label } from '../../atoms';
 import { Container } from './style';
 import { BsCheckCircleFill } from 'react-icons/bs';
 export default function CheckBoxButton(props) {
-  const { status, title, desc, onlyBtn, onClick, className } = props;
+  const { status, title, desc, onlyBtn, onClick, className, style } = props;
   return (
-    <Container className={className}>
+    <Container style={style} className={className}>
       <Button {...props} onClick={onClick}>
         <div className="one">
           {props.className === 'active' && !onlyBtn ? (

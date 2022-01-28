@@ -7,3 +7,7 @@ export { default as UserImage } from './UserImage/UserImage';
 export { default as ChatItemCardContainer } from './ChatItemCard/ChatItemCard';
 export { default as ChatCardDate } from './ChatCardDate/ChatCardDate';
 export { default as TxtInput } from './TxtInput/TxtInput';
+export { default as RecordButton } from './RecordButton/RecordButton';
+export { default as VoiceActionButton } from './VoiceActionButton/VoiceActionButton';
+export { default as Player } from './Player/Player';
+export { default as PayCard } from './PayCard/PayCard';

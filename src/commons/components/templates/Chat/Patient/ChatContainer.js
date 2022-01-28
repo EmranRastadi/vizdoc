@@ -3,6 +3,7 @@ import { PatientChatStore } from '../../../../services/Contexts/PatientChatStore
 import { PatientChatMainer } from './style';
 import { ChatHeader } from '../../../molecules';
 import { PatientAnswerBox, PatientChatContent } from '../../../organisms';
+import { VoiceRecorder } from '../../../organisms/VoiceRecorder/VoiceRecorder';
 export default function ChatContainer() {
   return (
     <PatientChatStore>
@@ -12,6 +13,7 @@ export default function ChatContainer() {
           <PatientChatMainer>
             <ChatHeader />
             <PatientChatContent />
+
             <PatientAnswerBox />
           </PatientChatMainer>
           <br />

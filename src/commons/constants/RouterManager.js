@@ -1,6 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
 import { NavbarHeader } from '../components/organisms';
-import { Experiment, Information, PatientChat } from '../components/templates';
+import {
+  Experiment,
+  Information,
+  PatientChat,
+  SuccessPay,
+  FailPay,
+} from '../components/templates';
 
 export default function RouterManager() {
   return (
@@ -13,6 +19,8 @@ export default function RouterManager() {
         <Route path={'/experiment'} element={<Experiment />} axact />
         <Route path={'/information'} element={<Information />} axact />
         <Route path={'/chat'} element={<PatientChat />} axact />
+        <Route path={'/success-pay'} element={<SuccessPay />} axact />
+        <Route path={'/fail-pay'} element={<FailPay />} axact />
       </Routes>
     </>
   );
