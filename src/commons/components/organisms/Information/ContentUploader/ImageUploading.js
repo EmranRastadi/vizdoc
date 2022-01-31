@@ -12,7 +12,6 @@ export default function ImageUploading(props) {
       src: props.src ? props.src : './icons/AdobeStock_93387078.jpeg',
     },
   };
-  console.log(11111111, props.width);
   return (
     <>
       <ThemeProvider theme={theme}>

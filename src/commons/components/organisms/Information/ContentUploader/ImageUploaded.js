@@ -7,8 +7,8 @@ import { ThemeProvider } from 'styled-components';
 import { useContext, useState } from 'react';
 import { InforMationContext } from '../../../../services/Contexts/InformationStore.context';
 export default function ImageUploaded(props) {
+  const { src, index } = props;
   const [modalStatus, setModalStatus] = useState(false);
-  const { state, dispatch } = useContext(InforMationContext);
 
   const theme = {
     detail: {
@@ -16,16 +16,33 @@ export default function ImageUploaded(props) {
     },
   };
 
-  function delImg() {
-    console.log(props.id);
+  const { state, dispatch } = useContext(InforMationContext);
+  function delImg(index) {
+    const uploadedFileClone = [...state.uploaded];
+    uploadedFileClone.splice(index, 1);
+    const uploadedIdClone = [...state.uploadedId];
+    uploadedIdClone.splice(index, 1);
+    dispatch({
+      type: 'UPLOADED',
+      payload: uploadedFileClone,
+    });
+
+    dispatch({
+      type: 'UPLOADED_ID',
+      payload: uploadedIdClone,
+    });
   }
+
   return (
     <>
       <ThemeProvider theme={theme}>
         <Grid item md={'4'} xs={'6'}>
           <ContainerImage>
             <Detail>
-              <BsTrash style={{ cursor: 'pointer' }} onClick={() => delImg()} />
+              <BsTrash
+                style={{ cursor: 'pointer' }}
+                onClick={() => delImg(index)}
+              />
               <AiOutlineEye
                 style={{ cursor: 'pointer' }}
                 onClick={(e) => setModalStatus(true)}
@@ -38,7 +55,7 @@ export default function ImageUploaded(props) {
         show={modalStatus}
         setShow={setModalStatus}
         title="پیشنمایش "
-        src={props.src}
+        src={src}
       />
     </>
   );

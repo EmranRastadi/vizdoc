@@ -17,44 +17,46 @@ export default function ContentUploader() {
   const { notifyError, notifySuccess } = useNotifyManager();
   function uploadFile(e) {
     e.preventDefault();
-    const data = new FormData();
-    data.append('file', e.target.files[0]);
-    let config = {
-      onUploadProgress: (progressEvent) => {
-        const { loaded, total } = progressEvent;
-        let percent = Math.floor((loaded * 100) / total);
-        setProgress(percent);
-      },
-    };
-    let imageListClone = [...state.uploaded];
+    if (e.target.files[0]) {
+      const data = new FormData();
+      data.append('file', e.target.files[0]);
+      let config = {
+        onUploadProgress: (progressEvent) => {
+          const { loaded, total } = progressEvent;
+          let percent = Math.floor((loaded * 100) / total);
+          setProgress(percent);
+        },
+      };
+      let imageListClone = [...state.uploaded];
 
-    imageListClone.push(e.target.files[0]);
+      imageListClone.push(e.target.files[0]);
 
-    dispatch({
-      type: 'UPLOADED',
-      payload: imageListClone,
-    });
-    axios
-      .post(BASE_URL + `storage/upload/temp`, data, config)
-      .then((res) => {
-        let img_id = res?.data?.data?.file?.id;
-        let imgIdClone = [...state.uploadedId];
-        imgIdClone.push(img_id);
-        dispatch({
-          type: 'UPLOADED_ID',
-          payload: imgIdClone,
-        });
-        setProgress(0);
-        notifySuccess('با موفقیت آپلود شد');
-      })
-      .catch((e) => {
-        imageListClone.splice(-1, 1);
-        dispatch({
-          type: 'UPLOADED',
-          payload: imageListClone,
-        });
-        notifyError('خطایی رخ داده است');
+      dispatch({
+        type: 'UPLOADED',
+        payload: imageListClone,
       });
+      axios
+        .post(BASE_URL + `storage/upload/temp`, data, config)
+        .then((res) => {
+          let img_id = res?.data?.data?.file?.id;
+          let imgIdClone = [...state.uploadedId];
+          imgIdClone.push(img_id);
+          dispatch({
+            type: 'UPLOADED_ID',
+            payload: imgIdClone,
+          });
+          setProgress(0);
+          notifySuccess('با موفقیت آپلود شد');
+        })
+        .catch((e) => {
+          imageListClone.splice(-1, 1);
+          dispatch({
+            type: 'UPLOADED',
+            payload: imageListClone,
+          });
+          notifyError('خطایی رخ داده است');
+        });
+    }
   }
 
   return (
