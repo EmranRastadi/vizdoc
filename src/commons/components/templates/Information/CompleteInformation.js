@@ -27,7 +27,6 @@ import { useNotifyManager } from '../../../hooks/Toastify';
 
 export default function CompleteInformation(props) {
   const { setStep } = props;
-  const toastId = React.useRef(null);
   const { result: serviceData, isLoading: serviceLoading } =
     useFetchServiceQuery();
   const [filterWhy, setFilterWhy] = useState();
@@ -45,14 +44,29 @@ export default function CompleteInformation(props) {
 
   function gotToNextLevel(e) {
     e.preventDefault();
-    if (state.information.age) {
+    console.log(22222222, state.information);
+    if (!state.information.age) {
+      notifyError('سن را وارد کنید');
+    }
+
+    if (!state.information.why) {
+      notifyError('دلیل آزمایش را بیان کنید');
+    }
+
+    if (!state.information.history) {
+      notifyError('سابقه بیماری خود را بیان کنید');
+    }
+
+    if (
+      state.information.age &&
+      state.information.why &&
+      state.information.history
+    ) {
       setStep(1);
       dispatch({
         type: 'TAB_SELECTED',
         payload: 1,
       });
-    } else {
-      notifyError('سن را وارد کنید');
     }
   }
 

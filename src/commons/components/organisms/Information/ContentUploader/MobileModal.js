@@ -1,22 +1,37 @@
 import { CircularProgress, Grid, TextField } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { Modal, VeifyMobile, VerifyCode } from '../..';
+import { useSelector } from 'react-redux';
 import {
   useSendMobileNumber,
+  useSaveOrderData,
   useSendVerifyCode,
 } from '../../../../apis/auth.api';
 import { Label } from '../../../atoms';
 import { CheckBoxButton, Loading } from '../../../molecules';
 import { useNotifyManager } from '../../../../hooks/Toastify';
+import { InforMationContext } from '../../../../services/Contexts/InformationStore.context';
 
 export default function MobileModal(props) {
   const { pay, setPay } = props;
   const { notifyError } = useNotifyManager();
   const [edit, setEdit] = useState(false);
   const [mobile, setMobile] = useState(null);
+  const { state } = useContext(InforMationContext);
   const [code, setCode] = useState(null);
   const { mutate, loading, finish, isSuccess } = useSendMobileNumber();
-  const { mutate: codeMutate, loading: loadingCode } = useSendVerifyCode();
+  const {
+    mutate: orderMutate,
+    isLoading: orderLoading,
+    finish: orderFinish,
+  } = useSaveOrderData();
+  const {
+    mutate: codeMutate,
+    loading: loadingCode,
+    finishCode,
+    data,
+  } = useSendVerifyCode();
+  // const state = useSelector((state) => state);
   function submitFormVerifyMobile() {
     if (mobile) {
       mutate({ mobile });
