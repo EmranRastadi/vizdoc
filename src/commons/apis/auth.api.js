@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useContext, useState } from 'react';
 import { useMutation } from 'react-query';
+import jsCookie from 'js-cookie';
 import { BASE_URL } from '../constants/Types';
 import { useDispatch } from 'react-redux';
 import { useNotifyManager } from '../hooks/Toastify';
@@ -56,10 +57,7 @@ const useSendVerifyCode = () => {
         setLoading(true);
         notifySuccess('کد تایید شد!');
         setFinishCode(true);
-        dispatch({
-          type: 'SET_TOKEN',
-          payload: `Bearer ${res?.data?.data?.token}`,
-        });
+
         orderMutate({
           token: res?.data?.data?.token,
           service_id: 1,
@@ -87,9 +85,16 @@ const useSendVerifyCode = () => {
 
 const useSaveOrderData = () => {
   const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
   const [finishCode, setFinishCode] = useState(false);
   const { notifyError, notifySuccess } = useNotifyManager();
   const { ...qryParams } = useMutation((data) => {
+    dispatch({
+      type: 'SET_TOKEN',
+      payload: `Bearer ${data.token}`,
+    });
+    jsCookie.set('loginToken', `Bearer ${data.token}`);
+
     setLoading(true);
     axios({
       method: 'POST',
@@ -104,7 +109,6 @@ const useSaveOrderData = () => {
       .then((res) => {
         setLoading(true);
         notifySuccess('اطلاعات شما با موفقیت ثبت شد!');
-        console.log(33545454, res);
         setTimeout(() => {
           window.open(res?.data?.data?.payment?.start_url, '_self');
         }, 500);

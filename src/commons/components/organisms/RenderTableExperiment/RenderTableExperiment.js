@@ -6,33 +6,10 @@ import {
 } from '../../molecules';
 import { Style } from './style';
 
-export default function RenderTableExperiment() {
-  const sample = [
-    {
-      status: 'active',
-      name: 'emran rastai',
-      experient: 'دکتر خصوصی',
-      date: '20/11/74 20:20',
-      price: 350000,
-      read: 'unread',
-    },
-    {
-      status: 'active',
-      name: 'emran rastai',
-      experient: 'khooonrizi',
-      date: '20/11/74 20:20',
-      price: 350000,
-      read: 'unread',
-    },
-    {
-      status: 'active',
-      name: 'emran rastai',
-      experient: 'khooonrizi',
-      date: '20/11/74 20:20',
-      price: 350000,
-      read: 'unread',
-    },
-  ];
+export default function RenderTableExperiment(props) {
+  const { data, isLoading } = props;
+  console.log(data?.data?.data?.orders);
+
   return (
     <Style>
       <TableContainer>
@@ -54,11 +31,13 @@ export default function RenderTableExperiment() {
           >
             <TableHeaderExperiment />
 
-            <TableContentExperiment rows={sample} />
+            {data?.data?.data?.orders && !isLoading ? (
+              <TableContentExperiment rows={data?.data?.data?.orders} />
+            ) : null}
           </Table>
         </TableContainer>
         <br />
-        <Paginate />
+        {/* <Paginate /> */}
       </TableContainer>
     </Style>
   );

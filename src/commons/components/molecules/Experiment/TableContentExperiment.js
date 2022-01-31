@@ -3,20 +3,23 @@ import { TableBody, TableCell, TableRow } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { CircleUserStatus, Tag } from '..';
 import { Style } from './style';
+import moment from 'jalali-moment';
+import { identifier } from 'stylis';
 
 const TableCelllCustom = styled(TableCell)((theme) => ({
   borderBottom: 'unset',
   bottom: 5,
+  fontFamily: 'yekan',
   background: ' #249abe',
 }));
 
 const TableRowCustom = styled(TableRow)((theme) => ({
-  height: 50,
+  height: '40px',
   background: '#f4f4f4',
   borderRadius: '10px !important',
 }));
 const TableRowCustomActive = styled(TableRow)((theme) => ({
-  height: 50,
+  height: '40px',
   background: 'linear-gradiant(to left , #249abe , #27c2fb)',
   borderRadius: '10px !important',
 }));
@@ -38,6 +41,28 @@ const useRowStyles = makeStyles({
 export default function TableContentExperiment(props) {
   let classes = useRowStyles();
 
+  function _renderStatusPay(status) {
+    if (status === 'pending_payment') {
+      return 'در انتظار پرداخت';
+    } else if (status === 'pending_expert') {
+      return 'در انتظار پزشک';
+    } else if (status === 'processing') {
+      return 'در حال انجام';
+    } else if (status === 'pending_customer') {
+      return 'در انتظار کاربر';
+    } else if (status === 'done') {
+      return 'اتمام';
+    } else {
+      return null;
+    }
+  }
+
+  function _renderWhoIs(state) {
+    let gender = state.details.gender === 'female' ? 'خانم' : 'آقا';
+    let pregent = state.details.pregnant === '1' ? 'باردار' : '';
+    let age = state.details.age + ' ساله';
+    return gender + ' ' + pregent + ' ' + age;
+  }
   return (
     <TableBody className={classes.tableBody}>
       {props.rows?.length ? (
@@ -60,14 +85,23 @@ export default function TableContentExperiment(props) {
               }}
             >
               <CircleUserStatus />
-              {row.name}
+              {_renderWhoIs(row)}
             </TableCelllCustom>
             <TableCelllCustom align="center">
-              <Tag>{row.experient}</Tag>
+              {row.details.dr_specialist_price > 0 ? (
+                <Tag>پزشک متخصص</Tag>
+              ) : null}
+              {row.details.emergency_price > 0 ? <Tag>اورژانسی</Tag> : null}
             </TableCelllCustom>
-            <TableCelllCustom align="center">{row.date}</TableCelllCustom>
-            <TableCelllCustom align="center">{row.price}</TableCelllCustom>
-            <TableCelllCustom align="left">{row.status}</TableCelllCustom>
+            <TableCelllCustom align="center">
+              {moment(row.created_at).locale('fa').format(' H:m   YYYY/M/D')}
+            </TableCelllCustom>
+            <TableCelllCustom align="center">
+              {row.amount} تومان
+            </TableCelllCustom>
+            <TableCelllCustom align="left">
+              {_renderStatusPay(row.status)}
+            </TableCelllCustom>
           </TableRowCustom>
         ))
       ) : (
