@@ -8,8 +8,6 @@ import { Style } from './style';
 
 export default function RenderTableExperiment(props) {
   const { data, isLoading } = props;
-  console.log(data?.data?.data?.orders);
-
   return (
     <Style>
       <TableContainer>
@@ -32,7 +30,20 @@ export default function RenderTableExperiment(props) {
             <TableHeaderExperiment />
 
             {data?.data?.data?.orders && !isLoading ? (
-              <TableContentExperiment rows={data?.data?.data?.orders} />
+              data?.data?.data?.orders.length > 0 ? (
+                <TableContentExperiment rows={data?.data?.data?.orders} />
+              ) : (
+                <p
+                  style={{
+                    position: 'absolute',
+                    width: '100%',
+                    fontSize: 17,
+                    textAlign: 'center',
+                  }}
+                >
+                  موردی یافت نشد!
+                </p>
+              )
             ) : null}
           </Table>
         </TableContainer>

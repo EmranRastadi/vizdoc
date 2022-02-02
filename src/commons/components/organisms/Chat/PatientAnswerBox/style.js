@@ -8,11 +8,14 @@ const Container = styled.div`
   flex-direction: row;
   overflow: hidden;
   column-gap: 20px;
+  position: sticky;
+  bottom: 0;
   justify-content: center;
 `;
 
 const Main = styled.div`
   background: #fff;
+  box-shadow: 0 0 10px 3px rgba(0 0 0 / 15%);
   border-radius: 10px;
   flex: 1;
   margin: 0 15px;

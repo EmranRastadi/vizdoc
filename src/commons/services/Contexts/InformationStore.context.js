@@ -9,6 +9,7 @@ const initialState = {
   uploadedId: [],
   totalPrice: 0,
   tabSelected: 0,
+  progress: 0,
 };
 const InforMationContext = createContext('');
 const InformationStore = (props) => {
@@ -20,6 +21,8 @@ const InformationStore = (props) => {
         return { ...state, serviceData: action.payload };
       case 'UPLOADED':
         return { ...state, uploaded: action.payload };
+      case 'PROGRESS':
+        return { ...state, progress: action.payload };
       case 'UPLOADED_ID':
         return { ...state, uploadedId: action.payload };
       case 'TOTAL_PRICE':

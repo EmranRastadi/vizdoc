@@ -1,4 +1,4 @@
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { lazy } from 'react';
 import { NavbarHeader } from '../components/organisms';
 import {
@@ -25,25 +25,24 @@ export const createLazy = (Route) => {
 
 export default function RouterManager() {
   const token = useSelector((state) => state?.auth?.token);
-  const history = useNavigate();
-  const PrivateRoute = ({
-    component: Component,
-    rPath: RedirectPath,
-    ...rest
-  }) => {
-    return (
-      <Route
-        {...rest}
-        render={(props) =>
-          LoginValidation(token) ? (
-            <Component {...props} />
-          ) : (
-            history(RedirectPath)
-          )
-        }
-      />
-    );
-  };
+  //   const PrivateRoute = ({
+  //     component: Component,
+  //     rPath: RedirectPath,
+  //     ...rest
+  //   }) => {
+  //     return (
+  //       <Route
+  //         {...rest}
+  //         render={(props) =>
+  //           LoginValidation(token) ? (
+  //             <Component {...props} />
+  //           ) : (
+  //             history(RedirectPath)
+  //           )
+  //         }
+  //       />
+  //     );
+  //   };
 
   // const Experiment = createLazy(
   //   './../component/templates/Experiment/Experiment.js'
@@ -51,7 +50,7 @@ export default function RouterManager() {
   return (
     <>
       <NavbarHeader />
-      <Routes>
+      <Switch>
         {/* <Route path={'/'} exact>
         {/* <h1>hi home</h1> */}
         {/* </Route> */}
@@ -61,12 +60,22 @@ export default function RouterManager() {
           rPath={'/information'}
           exact
         />  */}
-        <Route path={'/experiment'} element={<Experiment />} axact />
-        <Route path={'/information'} element={<Information />} axact />
-        <Route path={'/chat'} element={<PatientChat />} axact />
-        <Route path={'/success-pay'} element={<SuccessPay />} axact />
-        <Route path={'/fail-pay'} element={<FailPay />} axact />
-      </Routes>
+        <Route path={'/experiment'} axact>
+          <Experiment />
+        </Route>
+        <Route path={'/information'} axact>
+          <Information />
+        </Route>
+        <Route path={'/chat/:id'} axact>
+          <PatientChat />
+        </Route>
+        <Route path={'/success-pay'} axact>
+          <SuccessPay />
+        </Route>
+        <Route path={'/fail-pay'} axact>
+          <FailPay />
+        </Route>
+      </Switch>
     </>
   );
 }

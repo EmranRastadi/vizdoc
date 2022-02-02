@@ -5,6 +5,7 @@ import { CircleUserStatus, Tag } from '..';
 import { Style } from './style';
 import moment from 'jalali-moment';
 import { identifier } from 'stylis';
+import { NavLink, useHistory } from 'react-router-dom';
 
 const TableCelllCustom = styled(TableCell)((theme) => ({
   borderBottom: 'unset',
@@ -15,6 +16,7 @@ const TableCelllCustom = styled(TableCell)((theme) => ({
 
 const TableRowCustom = styled(TableRow)((theme) => ({
   height: '40px',
+  cursor: 'pointer',
   background: '#f4f4f4',
   borderRadius: '10px !important',
 }));
@@ -40,7 +42,7 @@ const useRowStyles = makeStyles({
 
 export default function TableContentExperiment(props) {
   let classes = useRowStyles();
-
+  const history = useHistory();
   function _renderStatusPay(status) {
     if (status === 'pending_payment') {
       return 'در انتظار پرداخت';
@@ -77,6 +79,7 @@ export default function TableContentExperiment(props) {
               scope="row"
               borderRadius="15px"
               align="right"
+              onClick={() => history.push(`/chat/${row.id}`)}
               style={{
                 display: 'flex',
                 flexDirection: 'row',

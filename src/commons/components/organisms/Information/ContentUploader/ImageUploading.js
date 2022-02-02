@@ -1,7 +1,6 @@
 import { Grid } from '@mui/material';
 import { ContainerImage, DetailUplading, Image } from './style';
 import { AiOutlineClose } from 'react-icons/ai';
-import { BsTrash } from 'react-icons/bs';
 import { ThemeProvider } from 'styled-components';
 import { Modal } from './../../';
 import { ProgressUpload } from '../../../molecules';

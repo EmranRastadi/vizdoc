@@ -1,4 +1,4 @@
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import RouterManager from './commons/constants/RouterManager';
 import { StylesProvider, jssPreset } from '@mui/styles';
 import { create } from 'jss';
@@ -24,9 +24,9 @@ function App() {
     <StylesProvider jss={jss}>
       <Provider store={store}>
         <QueryClientProvider client={queryClient}>
-          <BrowserRouter>
+          <Router>
             <RouterManager />
-          </BrowserRouter>
+          </Router>
           <ToastContainer rtl newestOnTop={false} />
         </QueryClientProvider>
       </Provider>

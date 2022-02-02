@@ -11,8 +11,11 @@ const ContainerImage = styled.div`
   border-radius: 10px;
   box-shadow: 0 0 10px 2px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  background: url(${(props) => props.theme.detail.src});
   background-size: cover;
+  img {
+    width: 100%;
+    height: 100%;
+  }
 `;
 
 const Detail = styled.div`

@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 
 export default function Experiment() {
   const token = jsCookie.get('loginToken');
+
   const [filter, setFilter] = useState({});
   if (token) {
   } else {
@@ -33,6 +34,7 @@ export default function Experiment() {
     setFilter(filterClone);
     setParams(searchParams.toString());
   }
+
   return (
     <MainContainer>
       <br />

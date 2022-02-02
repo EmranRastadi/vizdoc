@@ -43,7 +43,7 @@ export default function VoiceRecorder(props) {
 
   function convertDataURIToBinary(dataURI) {
     let base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
-    var base64 = dataURI.substring(base64Index);
+    let base64 = dataURI.substring(base64Index);
     let raw = window.atob(base64);
     let rawLength = raw.length;
     let array = new Uint8Array(new ArrayBuffer(rawLength));
@@ -56,23 +56,27 @@ export default function VoiceRecorder(props) {
   }
 
   function playSound() {
-    setIsPlaying(!isPlaying);
+    // setIsPlaying(!isPlaying);
     let binary = convertDataURIToBinary(voice);
     let blob = new Blob([binary], { type: 'audio/ogg' });
     var blobUrl = URL.createObjectURL(blob);
 
-    console.log(333333, blobUrl);
-    let song = new Audio(blobUrl);
+    return blobUrl;
+    // console.log(333333, blobUrl);
+    // let song = new Audio(blobUrl);
 
-    if (isPlaying === true) {
-      song.play();
-    } else {
-      song.pause();
-    }
+    // if (isPlaying === true) {
+    //   song.play();
+    // } else {
+    //   song.pause();
+    // }
   }
+
   return (
     <Container className={recorder ? 'active' : 'false'}>
-      {/* {voice && doAction === true ? null : ( */}
+      {/* {voice && doAction === true ? (
+        <audio src={URL.createObjectURL(voice)} controls />
+      ) : null} */}
       <ReactMic
         record={state.record}
         className={
@@ -126,11 +130,11 @@ export default function VoiceRecorder(props) {
               <FiTrash2 />
             </VoiceActionButton>
 
-            <Player className="active" onClick={() => playSound()} />
+            {/* <Player className="active" onClick={() => playSound()} /> */}
 
-            <VoiceActionButton className="active" onClick={() => onClose()}>
+            {/* <VoiceActionButton className="active" onClick={() => onClose()}>
               <AiOutlineClose />
-            </VoiceActionButton>
+            </VoiceActionButton> */}
           </>
         ) : (
           <>

@@ -12,7 +12,7 @@ export default function ImageUploaded(props) {
 
   const theme = {
     detail: {
-      src: props.src ? props.src : './icons/AdobeStock_93387078.jpeg',
+      src: props.src ? props.src : '',
     },
   };
 
@@ -48,6 +48,7 @@ export default function ImageUploaded(props) {
                 onClick={(e) => setModalStatus(true)}
               />
             </Detail>
+            <img src={src} />
           </ContainerImage>
         </Grid>
       </ThemeProvider>

@@ -24,7 +24,10 @@ export default function ContentUploader() {
         onUploadProgress: (progressEvent) => {
           const { loaded, total } = progressEvent;
           let percent = Math.floor((loaded * 100) / total);
-          setProgress(percent);
+          dispatch({
+            type: 'PROGRESS',
+            payload: percent,
+          });
         },
       };
       let imageListClone = [...state.uploaded];
@@ -45,11 +48,18 @@ export default function ContentUploader() {
             type: 'UPLOADED_ID',
             payload: imgIdClone,
           });
-          setProgress(0);
+          dispatch({
+            type: 'PROGRESS',
+            payload: 0,
+          });
           notifySuccess('با موفقیت آپلود شد');
         })
         .catch((e) => {
           imageListClone.splice(-1, 1);
+          dispatch({
+            type: 'PROGRESS',
+            payload: 0,
+          });
           dispatch({
             type: 'UPLOADED',
             payload: imageListClone,
@@ -64,8 +74,11 @@ export default function ContentUploader() {
       <Grid container spacing={3}>
         {state.uploaded.map((item, index) => {
           let src = URL.createObjectURL(item);
-          if (parseInt(progress) !== 0 && index === state.uploaded.length - 1) {
-            return <ImageUploading src={src} width={progress} />;
+          if (
+            parseInt(state.progress) !== 0 &&
+            index === state.uploaded.length - 1
+          ) {
+            return <ImageUploading src={src} width={state.progress} />;
           } else {
             return <ImageUploaded src={src} index={index} />;
           }

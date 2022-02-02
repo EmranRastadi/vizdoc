@@ -91,9 +91,9 @@ const useSaveOrderData = () => {
   const { ...qryParams } = useMutation((data) => {
     dispatch({
       type: 'SET_TOKEN',
-      payload: `Bearer ${data.token}`,
+      payload: `${data.token}`,
     });
-    jsCookie.set('loginToken', `Bearer ${data.token}`);
+    jsCookie.set('loginToken', `${data.token}`);
 
     setLoading(true);
     axios({
@@ -119,7 +119,7 @@ const useSaveOrderData = () => {
         notifyError('خطایی رخ داده است.');
       });
   });
-  return { ...qryParams };
+  return { ...qryParams, loading };
 };
 
 export { useSendMobileNumber, useSendVerifyCode, useSaveOrderData };

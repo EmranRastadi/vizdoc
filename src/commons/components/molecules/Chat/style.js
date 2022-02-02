@@ -4,6 +4,7 @@ const HeaderContainer = styled.div`
   width: 100%;
   background: linear-gradient(to left, rgb(37, 153, 189), rgb(40, 195, 251));
   height: 80px;
+  box-shadow: 0 2px 10px 3px rgb(0 0 0 / 15%);
   z-index: 9;
   position: sticky;
   border-radius: 10px 10px 0px 0px;

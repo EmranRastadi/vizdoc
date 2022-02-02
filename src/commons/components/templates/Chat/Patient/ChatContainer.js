@@ -3,8 +3,17 @@ import { PatientChatStore } from '../../../../services/Contexts/PatientChatStore
 import { PatientChatMainer } from './style';
 import { ChatHeader } from '../../../molecules';
 import { PatientAnswerBox, PatientChatContent } from '../../../organisms';
-import { VoiceRecorder } from '../../../organisms/VoiceRecorder/VoiceRecorder';
+import jsCookie from 'js-cookie';
+import { useParams } from 'react-router-dom';
 export default function ChatContainer() {
+  const token = jsCookie.get('loginToken');
+  const { id } = useParams();
+  if (token) {
+  } else {
+    window.open('/information', '_self');
+    return;
+  }
+
   return (
     <PatientChatStore>
       <Container maxWidth="md" style={{ marginBottom: '40px' }}>

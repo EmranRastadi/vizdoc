@@ -3,7 +3,15 @@ import jsCookie from 'js-cookie';
 import { useQuery } from 'react-query';
 import { BASE_URL } from '../constants/Types';
 const useGetOrder = (params) => {
-  const token = jsCookie.get('loginToken');
+  const first_token = jsCookie.get('loginToken');
+  let pattern = /^(.*?(\bBearer\s\b)[^$]*)$/;
+  let token_check = pattern.test(first_token);
+  let token;
+  if (token_check) {
+    token = token_check;
+  } else {
+    token = `Bearer ` + first_token;
+  }
 
   const { ...qryParams } = useQuery(['order', params], () => {
     return axios({
