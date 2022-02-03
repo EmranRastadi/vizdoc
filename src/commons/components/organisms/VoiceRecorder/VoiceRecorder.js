@@ -74,7 +74,6 @@ export default function VoiceRecorder(props) {
     // }
   }
 
-  console.log(voice);
   return (
     <Container className={recorder ? 'active' : 'false'}>
       {/* {voice && doAction === true ? (
@@ -82,7 +81,7 @@ export default function VoiceRecorder(props) {
       ) : null} */}
 
       {state.record === false && voice ? (
-        <AudioPlayer controls="controls" src={voice?.blobURL} type="audio/mp3" />
+        <audio controls="controls" src={voice?.blobURL} type="audio/mp3" />
       ) : null}
 
       <ReactMic
