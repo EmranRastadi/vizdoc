@@ -90,19 +90,31 @@ export default function TableContentExperiment(props) {
               <CircleUserStatus />
               {_renderWhoIs(row)}
             </TableCelllCustom>
-            <TableCelllCustom align="center">
+            <TableCelllCustom
+              onClick={() => history.push(`/chat/${row.id}`)}
+              align="center"
+            >
               {row.details?.dr_specialist_price > 0 ? (
                 <Tag>پزشک متخصص</Tag>
               ) : null}
               {row.details?.emergency_price > 0 ? <Tag>اورژانسی</Tag> : null}
             </TableCelllCustom>
-            <TableCelllCustom align="center">
+            <TableCelllCustom
+              onClick={() => history.push(`/chat/${row.id}`)}
+              align="center"
+            >
               {moment(row.created_at).locale('fa').format(' H:m   YYYY/M/D')}
             </TableCelllCustom>
-            <TableCelllCustom align="center">
+            <TableCelllCustom
+              onClick={() => history.push(`/chat/${row.id}`)}
+              align="center"
+            >
               {row.amount} تومان
             </TableCelllCustom>
-            <TableCelllCustom align="left">
+            <TableCelllCustom
+              onClick={() => history.push(`/chat/${row.id}`)}
+              align="left"
+            >
               {_renderStatusPay(row.status)}
             </TableCelllCustom>
           </TableRowCustom>

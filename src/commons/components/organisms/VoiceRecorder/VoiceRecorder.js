@@ -6,6 +6,8 @@ import { BsFillStopFill } from 'react-icons/bs';
 import { Container, ButtonContainer } from './style';
 import { Howl, Howler } from 'howler';
 import { Player, RecordButton, VoiceActionButton } from '../../atoms';
+import ReactPlayer from 'react-player';
+import { AudioPlayer } from '../../molecules';
 export default function VoiceRecorder(props) {
   const { recorder, setRecorder } = props;
   const [isPlaying, setIsPlaying] = useState(false);
@@ -72,11 +74,17 @@ export default function VoiceRecorder(props) {
     // }
   }
 
+  console.log(voice);
   return (
     <Container className={recorder ? 'active' : 'false'}>
       {/* {voice && doAction === true ? (
         <audio src={URL.createObjectURL(voice)} controls />
       ) : null} */}
+
+      {state.record === false && voice ? (
+        <AudioPlayer controls="controls" src={voice?.blobURL} type="audio/mp3" />
+      ) : null}
+
       <ReactMic
         record={state.record}
         className={

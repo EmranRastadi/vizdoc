@@ -21,3 +21,4 @@ export { default as ImagePreDownload } from './ImagePreDownload/ImagePreDownload
 export { default as LinkButton } from './LinkButton/LinkButton';
 export { default as DoctorDetail } from './Chat/DoctorDetail/DoctorDetail';
 export { default as TextChat } from './Chat/ChatItemCard/TextChat';
+export { default as AudioPlayer } from './AudioPlayer/AudioPlayer';
