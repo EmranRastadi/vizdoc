@@ -1,9 +1,5 @@
-import { makeStyles, Paper, Table, TableContainer } from '@mui/material';
-import {
-  Paginate,
-  TableContentExperiment,
-  TableHeaderExperiment,
-} from '../../molecules';
+import { Paper, Table, TableContainer } from '@mui/material';
+import { TableContentExperiment, TableHeaderExperiment } from '../../molecules';
 import { Style } from './style';
 
 export default function RenderTableExperiment(props) {

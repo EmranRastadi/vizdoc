@@ -60,9 +60,9 @@ export default function TableContentExperiment(props) {
   }
 
   function _renderWhoIs(state) {
-    let gender = state.details.gender === 'female' ? 'خانم' : 'آقا';
-    let pregent = state.details.pregnant === '1' ? 'باردار' : '';
-    let age = state.details.age + ' ساله';
+    let gender = state.details?.gender === 'female' ? 'خانم' : 'آقا';
+    let pregent = state.details?.pregnant === '1' ? 'باردار' : '';
+    let age = state.details?.age + ' ساله';
     return gender + ' ' + pregent + ' ' + age;
   }
   return (
@@ -91,10 +91,10 @@ export default function TableContentExperiment(props) {
               {_renderWhoIs(row)}
             </TableCelllCustom>
             <TableCelllCustom align="center">
-              {row.details.dr_specialist_price > 0 ? (
+              {row.details?.dr_specialist_price > 0 ? (
                 <Tag>پزشک متخصص</Tag>
               ) : null}
-              {row.details.emergency_price > 0 ? <Tag>اورژانسی</Tag> : null}
+              {row.details?.emergency_price > 0 ? <Tag>اورژانسی</Tag> : null}
             </TableCelllCustom>
             <TableCelllCustom align="center">
               {moment(row.created_at).locale('fa').format(' H:m   YYYY/M/D')}
