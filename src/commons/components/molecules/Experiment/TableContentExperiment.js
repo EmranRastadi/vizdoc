@@ -65,6 +65,7 @@ export default function TableContentExperiment(props) {
     let age = state.details?.age + ' ساله';
     return gender + ' ' + pregent + ' ' + age;
   }
+
   return (
     <TableBody className={classes.tableBody}>
       {props.rows?.length ? (
@@ -100,12 +101,14 @@ export default function TableContentExperiment(props) {
               {row.details?.emergency_price > 0 ? <Tag>اورژانسی</Tag> : null}
             </TableCelllCustom>
             <TableCelllCustom
+              className="hid-col-res"
               onClick={() => history.push(`/chat/${row.id}`)}
               align="center"
             >
               {moment(row.created_at).locale('fa').format(' H:m   YYYY/M/D')}
             </TableCelllCustom>
             <TableCelllCustom
+              className="hid-col-res"
               onClick={() => history.push(`/chat/${row.id}`)}
               align="center"
             >

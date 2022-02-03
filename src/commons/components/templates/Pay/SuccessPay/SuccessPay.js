@@ -1,8 +1,10 @@
 import { Container, Grid } from '@mui/material';
 import { Label, PayCard } from '../../../atoms';
+import { useHistory } from 'react-router-dom';
 import { CheckBoxButton } from '../../../molecules';
 import { PayImage } from './style';
 export default function SuccessPay() {
+  const history = useHistory();
   return (
     <Container
       maxWidth="md"
@@ -41,7 +43,7 @@ export default function SuccessPay() {
           <CheckBoxButton
             onlyBtn={true}
             style={{ width: '100%', height: '50px' }}
-            // onClick={(e) => gotToNextLevel(e)}
+            onClick={(e) => history.push('/dashboard')}
             className="active"
             title={'ورود به صفحه آزمایش'}
           />

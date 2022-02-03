@@ -16,7 +16,7 @@ export default function RenderTableExperiment(props) {
             style={{ border: 'unset' }}
             // className="table table-curved"
             sx={{
-              minWidth: 650,
+              minWidth: 250,
               border: 'unset',
               borderCollapse: 'inherit',
               borderSpacing: '0 10px',

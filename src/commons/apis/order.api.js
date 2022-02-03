@@ -13,16 +13,22 @@ const useGetOrder = (params) => {
     token = `Bearer ` + first_token;
   }
 
-  const { ...qryParams } = useQuery(['order', params], () => {
-    return axios({
-      method: 'GET',
-      url: BASE_URL + `order/?` + params,
-      headers: {
-        Authorization: token,
-      },
-      // params,
-    });
-  });
+  const { ...qryParams } = useQuery(
+    ['order', params],
+    () => {
+      return axios({
+        method: 'GET',
+        url: BASE_URL + `order/?` + params,
+        headers: {
+          Authorization: token,
+        },
+        // params,
+      });
+    },
+    {
+      refetchInterval: 30000,
+    }
+  );
   return { ...qryParams };
 };
 

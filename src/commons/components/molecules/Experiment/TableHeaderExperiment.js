@@ -15,8 +15,12 @@ export default function TableHeaderExperiment() {
       <TableCellRow>
         <TableCellCustom align="left">مشخصات شما</TableCellCustom>
         <TableCellCustom align="center">نوع آزمایش</TableCellCustom>
-        <TableCellCustom align="center">زمان</TableCellCustom>
-        <TableCellCustom align="center">مبلغ</TableCellCustom>
+        <TableCellCustom className="hid-col-res" align="center">
+          زمان
+        </TableCellCustom>
+        <TableCellCustom className="hid-col-res" align="center">
+          مبلغ
+        </TableCellCustom>
         <TableCellCustom align="right">وضعیت</TableCellCustom>
       </TableCellRow>
     </TableHead>

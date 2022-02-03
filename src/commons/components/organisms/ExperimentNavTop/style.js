@@ -6,6 +6,11 @@ const BadgeContainer = styled.div`
   justify-content: end;
   flex-direction: row;
   column-gap: 15px;
+  @media screen and (max-width: 600px) {
+    span {
+      font-size: 10px !important;
+    }
+  }
 `;
 
 export { BadgeContainer };

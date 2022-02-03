@@ -6,10 +6,10 @@ import { BadgeContainer } from './style';
 export default function ExperimentNavTop(props) {
   return (
     <Grid container spacing={'3'}>
-      <Grid item md="6" sm="12">
+      <Grid item sm="6" sx="12" className="responsive-box">
         <Label>آزمایش ها</Label>
       </Grid>
-      <Grid item md="6" xs="12">
+      <Grid item sm="6" sx="12" className="responsive-box">
         <BadgeContainer>
           <SearchBadge {...props} title="جدیدترین ها" name="newest" />
           <SearchBadge {...props} title="فعال ها" name="active" />
