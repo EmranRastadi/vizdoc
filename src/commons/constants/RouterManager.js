@@ -60,10 +60,10 @@ export default function RouterManager() {
           rPath={'/information'}
           exact
         />  */}
-        <Route path={'/experiment'} axact>
+        <Route path={'/dashboard'} axact>
           <Experiment />
         </Route>
-        <Route path={'/information'} axact>
+        <Route path={'/start'} axact>
           <Information />
         </Route>
         <Route path={'/chat/:id'} axact>

@@ -1,22 +1,17 @@
 import { CloseModal, Label } from '../../atoms';
 import { ListLi, ListUl, ModalConteiner } from './style';
+import {Link} from "@mui/material";
 
 export default function MenuList({ open, setOpen }) {
   return (
     <>
       <ListUl className="menu-in-big" style={{ flexGrow: 1 }}>
-        <ListLi>
-          <Label style={{ fontSize: 13 }}>صفحه اصلی</Label>
+     {/*   <ListLi>
+          <Link to={'/dashboard'}><Label style={{ fontSize: 13 }}>پیشخوان</Label></Link>
         </ListLi>
         <ListLi>
-          <Label style={{ fontSize: 13 }}>صفحه اصلی</Label>
-        </ListLi>
-        <ListLi>
-          <Label style={{ fontSize: 13 }}>صفحه اصلی</Label>
-        </ListLi>
-        <ListLi>
-          <Label style={{ fontSize: 13 }}>صفحه اصلی</Label>
-        </ListLi>
+          <Label style={{ fontSize: 13 }}>وبلاگ</Label>
+        </ListLi>*/}
       </ListUl>
 
       <ModalConteiner className={open ? 'active' : ''}>
