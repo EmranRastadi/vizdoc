@@ -13,7 +13,7 @@ export default function Experiment() {
   const [filter, setFilter] = useState({});
   if (token) {
   } else {
-    window.open('/information', '_self');
+    window.open('/start', '_self');
   }
 
   const [params, setParams] = useState('');
