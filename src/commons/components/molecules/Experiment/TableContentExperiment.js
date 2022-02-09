@@ -5,7 +5,7 @@ import { CircleUserStatus, Tag } from '..';
 import { Style } from './style';
 import moment from 'jalali-moment';
 import { identifier } from 'stylis';
-import { NavLink, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const TableCelllCustom = styled(TableCell)((theme) => ({
   borderBottom: 'unset',
@@ -117,6 +117,10 @@ export default function TableContentExperiment(props) {
             <TableCelllCustom
               onClick={() => history.push(`/chat/${row.id}`)}
               align="left"
+              style={{
+                textAlign: 'left',
+                paddingLeft: 15,
+              }}
             >
               {_renderStatusPay(row.status)}
             </TableCelllCustom>

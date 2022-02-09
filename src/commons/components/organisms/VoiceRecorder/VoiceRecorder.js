@@ -33,6 +33,7 @@ export default function VoiceRecorder(props) {
 
   function onStop(recordedBlob) {
     setVoice(recordedBlob);
+    props.selectedFile(recordedBlob, 'voice');
   }
 
   function onClose() {
@@ -80,9 +81,9 @@ export default function VoiceRecorder(props) {
         <audio src={URL.createObjectURL(voice)} controls />
       ) : null} */}
 
-      {state.record === false && voice ? (
+      {/* {state.record === false && voice ? (
         <audio controls="controls" src={voice?.blobURL} type="audio/mp3" />
-      ) : null}
+      ) : null} */}
 
       <ReactMic
         record={state.record}

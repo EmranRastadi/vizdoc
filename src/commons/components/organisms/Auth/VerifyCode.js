@@ -7,6 +7,7 @@ export default function VerifyCode({
   submitFormVerifyCode,
   setEdit,
   mobile,
+  type,
 }) {
   function edit() {
     setEdit(true);

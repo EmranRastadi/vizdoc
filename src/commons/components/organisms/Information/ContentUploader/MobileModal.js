@@ -13,7 +13,7 @@ import { useNotifyManager } from '../../../../hooks/Toastify';
 import { InforMationContext } from '../../../../services/Contexts/InformationStore.context';
 
 export default function MobileModal(props) {
-  const { pay, setPay } = props;
+  const { pay, setPay, type } = props;
   const { notifyError } = useNotifyManager();
   const [edit, setEdit] = useState(false);
   const [mobile, setMobile] = useState(null);
@@ -42,7 +42,7 @@ export default function MobileModal(props) {
 
   function submitFormVerifyCode() {
     if (code) {
-      codeMutate({ code, mobile });
+      codeMutate({ code, mobile, type });
     } else {
       notifyError('شماره کد را وارد کنید');
     }
@@ -64,6 +64,7 @@ export default function MobileModal(props) {
           setCode={setCode}
           setEdit={setEdit}
           mobile={mobile}
+          type={type}
           submitFormVerifyCode={submitFormVerifyCode}
         />
       ) : (

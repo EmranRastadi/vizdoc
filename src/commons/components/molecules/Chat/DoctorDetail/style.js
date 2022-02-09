@@ -15,6 +15,9 @@ const DoctorImage = styled.div`
   border-radius: 100%;
   background: #fff;
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   left: 0px;
   right: 0;
   margin: 0 auto;

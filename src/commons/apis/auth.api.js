@@ -6,6 +6,7 @@ import { BASE_URL } from '../constants/Types';
 import { useDispatch } from 'react-redux';
 import { useNotifyManager } from '../hooks/Toastify';
 import { InforMationContext } from '../services/Contexts/InformationStore.context';
+import { useHistory } from 'react-router-dom';
 const useSendMobileNumber = () => {
   const [loading, setLoading] = useState(false);
   const { notifyError, notifySuccess } = useNotifyManager();
@@ -36,6 +37,7 @@ const useSendMobileNumber = () => {
 
 const useSendVerifyCode = () => {
   const { state } = useContext(InforMationContext);
+  const history = useHistory();
   const dispatch = useDispatch();
   const { mutate: orderMutate } = useSaveOrderData();
   const [loading, setLoading] = useState(false);
@@ -44,6 +46,7 @@ const useSendVerifyCode = () => {
   const [data, setData] = useState('');
   const { ...qryParams } = useMutation((data) => {
     setLoading(true);
+    const { type } = data;
     axios({
       method: 'POST',
       url: BASE_URL + 'otp/verifyCode',
@@ -56,22 +59,30 @@ const useSendVerifyCode = () => {
       .then((res) => {
         setLoading(true);
         notifySuccess('کد تایید شد!');
+        jsCookie.set('userId', `${res?.data?.data?.user?.id}`);
         setFinishCode(true);
+        if (type && type === 'justLogin') {
+          jsCookie.set('loginToken', `${res?.data?.data?.token}`);
+          window.open('/dashboard', '_self');
+        } else {
+          orderMutate({
+            token: res?.data?.data?.token,
+            service_id: 1,
+            age: state.information.age,
+            gender: state.information.gender
+              ? state.information.gender
+              : 'male',
+            why: state.information.why ? state.information.why : '',
+            pregnant: state.information.pregnant
+              ? parseInt(state.information.pregnant)
+              : 0,
+            history: state.information.history ? state.information.history : '',
+            is_emergency: state.information.emergency === true ? 1 : 0,
+            is_specialist: state.information.specialist === true ? 1 : 0,
+            file_ids: state.uploadedId,
+          });
+        }
 
-        orderMutate({
-          token: res?.data?.data?.token,
-          service_id: 1,
-          age: state.information.age,
-          gender: state.information.gender ? state.information.gender : 'male',
-          why: state.information.why ? state.information.why : '',
-          pregnant: state.information.pregnant
-            ? parseInt(state.information.pregnant)
-            : 0,
-          history: state.information.history ? state.information.history : '',
-          is_emergency: state.information.emergency === true ? 1 : 0,
-          is_specialist: state.information.specialist === true ? 1 : 0,
-          file_ids: state.uploadedId,
-        });
         setData(res);
       })
       .catch((e) => {

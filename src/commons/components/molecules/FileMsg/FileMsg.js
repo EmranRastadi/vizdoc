@@ -2,12 +2,13 @@ import { BackDownload, Container, ImageLoader } from './style';
 import { ChatCardDate, ChatItemCardContainer, Label } from '../../atoms';
 import { MdOutlineDownloadForOffline } from 'react-icons/md';
 import { useEffect, useState } from 'react';
+import { BsFileEarmarkRichtext } from 'react-icons/bs';
 import axios from 'axios';
 import moment from 'jalali-moment';
 import { BASE_URL } from '../../../constants/Types';
 import jsCookie from 'js-cookie';
 import { CircularProgress } from '@mui/material';
-export default function ImagePreDownload(props) {
+export default function FileMsg(props) {
   const { content, type } = props;
   const { id } = content?.file;
   const userId = jsCookie.get('userId');
@@ -58,7 +59,18 @@ export default function ImagePreDownload(props) {
     >
       <Container>
         <ImageLoader>
-          <img src={image} />
+          <BsFileEarmarkRichtext
+            style={{
+              fontSize: '40px',
+              position: 'absolute',
+              left: 0,
+              right: 0,
+              top: 0,
+              bottom: 0,
+              margin: 'auto',
+            }}
+          />
+
           {loading ? (
             <BackDownload>
               <CircularProgress />

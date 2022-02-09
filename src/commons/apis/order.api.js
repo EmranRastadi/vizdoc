@@ -1,6 +1,6 @@
 import axios from 'axios';
 import jsCookie from 'js-cookie';
-import { useQuery } from 'react-query';
+import { useMutation, useQuery } from 'react-query';
 import { BASE_URL } from '../constants/Types';
 const useGetOrder = (params) => {
   const first_token = jsCookie.get('loginToken');

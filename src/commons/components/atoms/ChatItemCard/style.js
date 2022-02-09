@@ -16,6 +16,12 @@ const Container = styled.div`
   max-width: @media screen and (max-width: 1028px) {
     width: 350px !important;
   }
+
+  &.active {
+    float: left;
+    background: linear-gradient(to left, rgb(37, 153, 189), rgb(40, 195, 251));
+    color: #fff;
+  }
 `;
 
 export { Container };

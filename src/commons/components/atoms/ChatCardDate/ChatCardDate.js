@@ -6,7 +6,9 @@ export default function ChatCardDate(props) {
   const { date, time, status, style, showOf } = props;
   return (
     <Container style={style}>
-      {showOf ? null : status ? (
+      {showOf === false ? (
+        ''
+      ) : status ? (
         <BsCheckAll className="activated" fontSize={'20px'} />
       ) : (
         <BsCheck2 fontSize={'20px'} />
