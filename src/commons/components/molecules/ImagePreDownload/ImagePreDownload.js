@@ -1,4 +1,5 @@
 import { BackDownload, Container, ImageLoader } from './style';
+import { ThemeProvider } from 'styled-components';
 import { ChatCardDate, ChatItemCardContainer, Label } from '../../atoms';
 import { MdOutlineDownloadForOffline } from 'react-icons/md';
 import { useEffect, useState } from 'react';
@@ -46,52 +47,59 @@ export default function ImagePreDownload(props) {
       });
   }
 
-  return (
-    <ChatItemCardContainer
-      onClick={() => {
-        if (image) {
-          window.open(image, '_blank');
-        }
-      }}
-      style={{ width: '250px', cursor: 'pointer' }}
-      className={userId.toString() === user_id.toString() ? '' : 'active'}
-    >
-      <Container>
-        <ImageLoader>
-          <img src={image} />
-          {loading ? (
-            <BackDownload>
-              <CircularProgress />
-              {/* <MdOutlineDownloadForOffline /> */}
-            </BackDownload>
-          ) : null}
-        </ImageLoader>
+  const theme = {
+    preImage: {
+      img: loading ? '' : image,
+    },
+  };
 
-        <div
-          style={{
-            float: 'right',
-          }}
-        >
-          <Label
+  return (
+    <ThemeProvider theme={theme}>
+      <ChatItemCardContainer
+        onClick={() => {
+          if (image) {
+            window.open(image, '_blank');
+          }
+        }}
+        style={{ width: '250px', cursor: 'pointer' }}
+        className={userId.toString() === user_id.toString() ? '' : 'active'}
+      >
+        <Container>
+          <ImageLoader>
+            {loading ? (
+              <BackDownload>
+                <CircularProgress />
+                {/* <MdOutlineDownloadForOffline /> */}
+              </BackDownload>
+            ) : null}
+          </ImageLoader>
+
+          <div
             style={{
-              fontSize: '14px',
-              marginTop: 15,
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-              whiteSpace: 'nowrap',
+              float: 'right',
             }}
           >
-            فایل پیوست شده
-          </Label>
+            <Label
+              style={{
+                fontSize: '14px',
+                marginTop: 15,
+                overflow: 'hidden',
+                textOverflow: 'ellipsis',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              فایل پیوست شده
+            </Label>
 
-          <ChatCardDate
-            date={moment(content?.created_at).locale('fa').format('YYYY/M/D')}
-            time={moment(content?.created_at).locale('fa').format('H:m')}
-            status={true}
-            showOf={userId.toString() === user_id.toString() ? true : false}
-          />
-        </div>
-      </Container>
-    </ChatItemCardContainer>
+            <ChatCardDate
+              date={moment(content?.created_at).locale('fa').format('YYYY/M/D')}
+              time={moment(content?.created_at).locale('fa').format('H:m')}
+              status={true}
+              showOf={userId.toString() === user_id.toString() ? true : false}
+            />
+          </div>
+        </Container>
+      </ChatItemCardContainer>
+    </ThemeProvider>
   );
 }

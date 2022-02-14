@@ -6,14 +6,15 @@ import { PatientAnswerBox, PatientChatContent } from '../../../organisms';
 import jsCookie from 'js-cookie';
 import { useParams } from 'react-router-dom';
 import { useGetChatData, useSendMessage } from '../../../../apis/chat.api';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNotifyManager } from '../../../../hooks/Toastify';
 import { BASE_URL } from '../../../../constants/Types';
 export default function ChatContainer() {
   const token = jsCookie.get('loginToken');
   const { id } = useParams();
-  const { data, isLoading, refetch } = useGetChatData(id);
+  const { data: chatData, isLoading, refetch } = useGetChatData(id);
+  const [data, setData] = useState(null);
   const [file, setFile] = useState(null);
   const { notifySuccess, notifyError } = useNotifyManager();
   const {
@@ -21,17 +22,26 @@ export default function ChatContainer() {
     isLoading: sendLoding,
     isError,
     isSuccess,
+    isIdle,
   } = useSendMessage();
 
   useEffect(() => {
-    refetch();
-  }, [isSuccess, isError]);
+    setData(chatData);
+  }, [chatData]);
+
+  useEffect(() => {
+    if (!isLoading && isSuccess) refetch();
+  }, [sendLoding, isSuccess]);
   const [fileUpRes, setFileUpRes] = useState(null);
   const [uploadLoading, setUploadLoading] = useState(false);
   function selectedFile() {
     if (file) {
       const data = new FormData();
       data.append('file', file);
+
+      if (file?.blobURL) {
+        data.append('is_blob', true);
+      }
       setUploadLoading(true);
       axios({
         method: 'POST',
@@ -46,13 +56,17 @@ export default function ChatContainer() {
           let img = res?.data?.data?.file;
           setFileUpRes(img);
           let type = res?.data?.data?.file?.mime?.split('/')?.[0];
+
+          if (type === 'application') {
+            type = 'file';
+          }
           let dataOut = {
             order_id: id,
             file_id: res?.data?.data?.file?.id,
             message: '',
             type: type,
           };
-          mutate({ data: dataOut });
+          mutate({ data: dataOut, id });
 
           notifySuccess('با موفقیت آپلود شد');
         })

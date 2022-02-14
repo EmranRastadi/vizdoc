@@ -1,9 +1,9 @@
 import { Container } from './style';
 import { HiOutlineArrowNarrowRight } from 'react-icons/hi';
 
-export default function BackButton() {
+export default function BackButton(props) {
   return (
-    <Container>
+    <Container {...props}>
       <HiOutlineArrowNarrowRight />
     </Container>
   );

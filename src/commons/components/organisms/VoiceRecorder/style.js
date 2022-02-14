@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 const Container = styled.div`
   position: absolute;
-  top: 15px;
+  top: 5px;
   height : 80px;
   right: 15px;
   background: #27a7d1;
   left: 15px;
   direction: ltr;
-  border-radius: 15px;
+  border-radius: 7px;
   display: flex;
   opacity : 0;
   z-index: -1;
@@ -42,59 +42,7 @@ const Container = styled.div`
       border-radius: 15px;
     }
   }
-  audio::-webkit-media-controls-panel{
-    display : none;
-  }
-  audio::-webkit-media-controls-mute-button{
-    display : none;
-  }
-  audio::-webkit-media-controls-play-button{
-    display : none;
-  }
-  audio::-webkit-media-controls-timeline-container{
-    // display : none;
-  }
-  audio::-webkit-media-controls-current-time-display{
-    display : none;
-  }
-  audio::-webkit-media-controls-time-remaining-display{
-    display : none;
-  }
-  audio::-webkit-media-controls-timeline{
-    display : none;
-  }
-  audio::-webkit-media-controls-volume-slider-container{
-    display : none;
-  }
-  audio::-webkit-media-controls-volume-slider{
-    display : none;
-  }
-  audio::-webkit-media-controls-seek-back-button{
-    display : none;
-  }
-  audio::-webkit-media-controls-seek-forward-button{
-    display : none;
-  }
-  audio::-webkit-media-controls-fullscreen-button{
-    display : none;
-  }
-  audio::-webkit-media-controls-rewind-button{
-    display : none;
-  }
-  audio::-webkit-media-controls-return-to-realtime-button{
-    display : none;
-  }
-  audio::-webkit-media-controls-toggle-closed-captions-button{
-    display : none;
-  }
-  
-
-  audio::-webkit-media-controls-timeline {
-    background-color: #B1D4E0;
-    border-radius: 25px;
-    margin-left: 10px;
-    margin-right: 10px;
-  }
+ 
 
 
   @media screen and (max-width: 1024px) {

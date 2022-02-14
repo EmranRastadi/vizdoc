@@ -14,13 +14,23 @@ const Container = styled.div`
 `;
 
 const ImageLoader = styled.div`
-  width: 80px;
-  height: 80px;
   position: relative;
   border-radius: 10px;
   margin-left: 15px;
+  width: 80px;
+  height: 80px;
   float: right;
   overflow: hidden;
+  background-image: url(${(props) => props?.theme?.preImage?.img});
+  background-size: cover;
+  object-fit: contain;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img {
+    width: auto;
+    height: auto;
+  }
 `;
 
 const BackDownload = styled.div`

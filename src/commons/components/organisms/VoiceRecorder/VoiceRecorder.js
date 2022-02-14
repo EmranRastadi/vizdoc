@@ -4,10 +4,8 @@ import { AiOutlineClose, AiOutlineSend } from 'react-icons/ai';
 import { FiTrash2 } from 'react-icons/fi';
 import { BsFillStopFill } from 'react-icons/bs';
 import { Container, ButtonContainer } from './style';
-import { Howl, Howler } from 'howler';
-import { Player, RecordButton, VoiceActionButton } from '../../atoms';
-import ReactPlayer from 'react-player';
-import { AudioPlayer } from '../../molecules';
+
+import { RecordButton, VoiceActionButton } from '../../atoms';
 export default function VoiceRecorder(props) {
   const { recorder, setRecorder } = props;
   const [isPlaying, setIsPlaying] = useState(false);
@@ -32,8 +30,9 @@ export default function VoiceRecorder(props) {
   }
 
   function onStop(recordedBlob) {
+    console.log(7777777, recordedBlob.blobURL);
+
     setVoice(recordedBlob);
-    props.selectedFile(recordedBlob, 'voice');
   }
 
   function onClose() {
@@ -42,48 +41,15 @@ export default function VoiceRecorder(props) {
     setState({ record: false });
   }
 
-  let BASE64_MARKER = ';base64,';
-
-  function convertDataURIToBinary(dataURI) {
-    let base64Index = dataURI.indexOf(BASE64_MARKER) + BASE64_MARKER.length;
-    let base64 = dataURI.substring(base64Index);
-    let raw = window.atob(base64);
-    let rawLength = raw.length;
-    let array = new Uint8Array(new ArrayBuffer(rawLength));
-
-    let i;
-    for (i = 0; i < rawLength; i++) {
-      array[i] = raw.charCodeAt(i);
-    }
-    return array;
-  }
-
-  function playSound() {
-    // setIsPlaying(!isPlaying);
-    let binary = convertDataURIToBinary(voice);
-    let blob = new Blob([binary], { type: 'audio/ogg' });
-    var blobUrl = URL.createObjectURL(blob);
-
-    return blobUrl;
-    // console.log(333333, blobUrl);
-    // let song = new Audio(blobUrl);
-
-    // if (isPlaying === true) {
-    //   song.play();
-    // } else {
-    //   song.pause();
-    // }
+  function sendSound() {
+    props.selectedFile(voice);
   }
 
   return (
     <Container className={recorder ? 'active' : 'false'}>
-      {/* {voice && doAction === true ? (
-        <audio src={URL.createObjectURL(voice)} controls />
-      ) : null} */}
-
-      {/* {state.record === false && voice ? (
-        <audio controls="controls" src={voice?.blobURL} type="audio/mp3" />
-      ) : null} */}
+      {voice && doAction === true ? (
+        <audio src={voice?.blobURL} controls="controls" type="audio/mp3" />
+      ) : null}
 
       <ReactMic
         record={state.record}
@@ -124,7 +90,7 @@ export default function VoiceRecorder(props) {
         {voice && doAction === true ? (
           <>
             <VoiceActionButton className="active">
-              <AiOutlineSend />
+              <AiOutlineSend onClick={() => sendSound()} />
             </VoiceActionButton>
 
             <VoiceActionButton
@@ -137,12 +103,6 @@ export default function VoiceRecorder(props) {
             >
               <FiTrash2 />
             </VoiceActionButton>
-
-            {/* <Player className="active" onClick={() => playSound()} /> */}
-
-            {/* <VoiceActionButton className="active" onClick={() => onClose()}>
-              <AiOutlineClose />
-            </VoiceActionButton> */}
           </>
         ) : (
           <>

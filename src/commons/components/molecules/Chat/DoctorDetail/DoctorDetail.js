@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react';
 import moment from 'jalali-moment';
 import jsCookie from 'js-cookie';
 import { BASE_URL } from '../../../../constants/Types';
+import { ThemeProvider } from 'styled-components';
 export default function DoctorDetail(props) {
   const { content } = props;
   const { expert } = content?.metadata ?? null;
@@ -44,13 +45,16 @@ export default function DoctorDetail(props) {
       });
   }
 
+  const theme = {
+    doctor: {
+      img: loading ? '' : image,
+    },
+  };
   return (
-    <>
+    <ThemeProvider theme={theme}>
       <Container>
         <Grid item md={4} xs={8}>
-          <DoctorImage>
-            {loading ? <CircularProgress /> : <img src={image} />}
-          </DoctorImage>
+          <DoctorImage>{loading ? <CircularProgress /> : null}</DoctorImage>
           <ContentCard className="card-item">
             <Label
               className="label"
@@ -87,6 +91,6 @@ export default function DoctorDetail(props) {
           status={true}
         />
       </Status>
-    </>
+    </ThemeProvider>
   );
 }

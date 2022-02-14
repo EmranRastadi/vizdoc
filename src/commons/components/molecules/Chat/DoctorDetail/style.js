@@ -14,7 +14,9 @@ const DoctorImage = styled.div`
   overflow: hidden;
   border-radius: 100%;
   background: #fff;
+  background-image: url(${(props) => props?.theme?.doctor?.img});
   position: absolute;
+  background-size: cover;
   display: flex;
   align-items: center;
   justify-content: center;

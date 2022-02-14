@@ -21,44 +21,17 @@ import { useEffect, useState } from 'react';
 import { useSendMessage } from '../../../../apis/chat.api';
 export default function PatientAnswerBox(props) {
   const [recorder, setRecorder] = useState(false);
+  const { mutate, isLoading, isSuccess } = useSendMessage();
+
   const [file, setFile] = useState(null);
   const [answerMsg, setAnswerMsg] = useState('');
-  const { notifyError, notifySuccess } = useNotifyManager();
-  const { mutate, isLoading, isError, isSuccess } = useSendMessage();
-
-  // function _renderFile(typeIn) {
-  //   if (typeIn === 'image') {
-  //     let src = URL.createObjectURL(file);
-  //     return (
-  //       <ContainerCo>
-  //         <Img src={src} />
-  //         <Label style={{ flex: 1, fontSize: '13px' }}>یک تصویر پیوست شد</Label>
-  //         <AiOutlineClose style={{ cursor: 'pointer' }} />
-  //       </ContainerCo>
-  //     );
-  //   } else if (type === 'audio') {
-  //     return (
-  //       <ContainerCo>
-  //         <Label style={{ fontSize: '13px' }}>یک فایل صوتی پیوست شد</Label>
-  //       </ContainerCo>
-  //     );
-  //   } else if (type === 'video') {
-  //     return (
-  //       <ContainerCo>
-  //         <Label style={{ fontSize: '13px' }}>یک ویدیو پیوست شد</Label>
-  //       </ContainerCo>
-  //     );
-  //   } else {
-  //     return null;
-  //   }
-  // }
 
   useEffect(() => {
-    if (isSuccess) {
+    if (isSuccess && !isLoading) {
       setAnswerMsg('');
       props.refetch();
     }
-  }, [isSuccess]);
+  }, [isSuccess, isLoading]);
 
   function sendMsg() {
     let type;
@@ -68,19 +41,21 @@ export default function PatientAnswerBox(props) {
       message: answerMsg,
       type: type,
     };
-    mutate({ data: dataOut });
-    // console.log(props.fileUpRes?.id, answerMsg);
+    if (answerMsg !== '') {
+      mutate({ data: dataOut });
+    }
+  }
+
+  function checkEnterClick(e) {
+    if (e.key === 'Enter') {
+      sendMsg();
+    }
   }
 
   return (
     <Grid item xs={12}>
       <Container>
         <Main>
-          {/* {props.fileUpRes ? (
-            <PreAttachment>{type && _renderFile(type)}</PreAttachment>
-          ) : null} */}
-          {/* <ReactPlayer /> */}
-
           {props?.data?.data?.can_send_message ? (
             <>
               {props.loading || props.sendLoding ? (
@@ -95,7 +70,7 @@ export default function PatientAnswerBox(props) {
                   <AttachButton style={{ fontSize: '19px', lineHeight: '3' }}>
                     <input
                       type="file"
-                      accept="image/* , video/*,audio/*"
+                      accept="image/* , video/*,audio/*,application/pdf"
                       onChange={(e) => {
                         props.selectedFile(e.target.files[0], 'image');
                         setFile(e.target.files[0]);
@@ -108,10 +83,11 @@ export default function PatientAnswerBox(props) {
 
               <TxtInput
                 value={answerMsg}
+                onKeyDown={(e) => checkEnterClick(e)}
                 onChange={(e) => setAnswerMsg(e.target.value)}
                 placeholder={'شما میتوانید از دکتر خود سوال بپرسید ...'}
               />
-              {isLoading || props.sendLoding ? (
+              {isLoading && !isSuccess ? (
                 <LoadingButton>
                   <CircularProgress />
                 </LoadingButton>

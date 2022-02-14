@@ -4,7 +4,6 @@ import { Style } from './style';
 
 export default function RenderTableExperiment(props) {
   const { data, isLoading } = props;
-  console.log(22222222, data);
   return (
     <Style>
       <TableContainer>
