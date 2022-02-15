@@ -38,7 +38,6 @@ export default function ChatContainer() {
     if (file) {
       const data = new FormData();
       data.append('file', file);
-
       if (file?.blobURL) {
         data.append('is_blob', true);
       }

@@ -6,6 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import { Container } from '@mui/material';
 import { AiOutlineMenu, AiOutlineUser } from 'react-icons/ai';
 import { ExperimentButton, MenuList } from '../../molecules';
+import logo from '../../../../assets/icons/Path 1305.svg';
 import { useHistory } from 'react-router-dom';
 import MobileModal from '../Information/ContentUploader/MobileModal';
 // import MenuIcon from '@mui/icons-material/Menu';
@@ -32,7 +33,7 @@ export default function NavbarHeader() {
               onClick={() => history.push('/dashboard')}
               sx={{ mr: 2 }}
             >
-              <img src="/icons/Path 1305.svg" />
+              <img src={logo} />
             </IconButton>
             &nbsp;&nbsp;&nbsp;
             <MenuList open={open} setOpen={setOpen} />
