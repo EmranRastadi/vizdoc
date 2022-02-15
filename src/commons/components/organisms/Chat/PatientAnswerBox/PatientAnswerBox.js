@@ -67,7 +67,7 @@ export default function PatientAnswerBox(props) {
                   <AttachButton onClick={() => setRecorder(true)}>
                     <MdKeyboardVoice />
                   </AttachButton>
-                  <AttachButton style={{ fontSize: '19px', lineHeight: '3' }}>
+                  <AttachButton style={{ fontSize: '14px', lineHeight: '13' }}>
                     <input
                       type="file"
                       accept="image/* , video/*,audio/*,application/pdf"
@@ -85,7 +85,7 @@ export default function PatientAnswerBox(props) {
                 value={answerMsg}
                 onKeyDown={(e) => checkEnterClick(e)}
                 onChange={(e) => setAnswerMsg(e.target.value)}
-                placeholder={'شما میتوانید از دکتر خود سوال بپرسید ...'}
+                placeholder={'پیام'}
               />
               {isLoading && !isSuccess ? (
                 <LoadingButton>
@@ -93,11 +93,11 @@ export default function PatientAnswerBox(props) {
                 </LoadingButton>
               ) : (
                 <CheckBoxButton
-                  style={{ width: '120px' }}
+                  style={{ width: '۸0px' }}
                   onlyBtn={true}
                   onClick={sendMsg}
                   className="active"
-                  title={'ارسال سوال'}
+                  title={'ارسال'}
                 />
               )}
             </>

@@ -5,7 +5,6 @@ const PatientChatMainer = styled.div`
   border-radius: 10px;
   float: right;
   position: relative;
-  margin-bottom: 50px;
   background: #f1f1f1;
 `;
 

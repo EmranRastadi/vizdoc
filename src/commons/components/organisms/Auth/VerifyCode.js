@@ -18,14 +18,14 @@ export default function VerifyCode({
         {loadingCode ? <Loading style={{ height: '100%' }} /> : null}
 
         <Label style={{ fontSize: 12, color: '#aaa' }}>
-          کد تایید به موبایل {mobile}{' '}
+          کد تایید به شماره  {mobile}{' '}
           <span
             style={{ color: '#1976d2', cursor: 'pointer' }}
             onClick={() => edit()}
           >
             ( ویرایش شماره )
           </span>{' '}
-          ارسال شده است.لطفا در کادر زیر وارد کنید{' '}
+          پیامک شده است.لطفا کد دریافت شده را در کادر زیر وارد و بر روی دکمه ثبت کلیک نمایید.{' '}
         </Label>
       </Grid>
 
@@ -33,11 +33,14 @@ export default function VerifyCode({
         <TextField
           dir="rtl"
           style={{ fontFamily: 'yekan' }}
+          inputProps={{style:{textAlign:'center', letterSpacing: 15}}}
+          type="number"
           fullWidth
           onChange={(e) => setCode(e.target.value)}
           id="outlined-basic"
           label="کد تایید"
           variant="outlined"
+          className={"auth-input"}
         />
       </Grid>
 
@@ -46,7 +49,7 @@ export default function VerifyCode({
           onClick={() => submitFormVerifyCode()}
           onlyBtn={true}
           className="active"
-          title={'بررسی کد'}
+          title={'ثبت'}
         />
       </Grid>
     </div>

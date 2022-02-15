@@ -89,7 +89,7 @@ export default function ChatContainer() {
 
   return (
     <PatientChatStore>
-      <Container maxWidth="md" style={{ marginBottom: '40px' }}>
+      <Container maxWidth="md" style={{ marginBottom: '40px',padding:0 }}>
         <br />
         <Grid item xs="12" style={{ marginBottom: '40px' }}>
           {isLoading || !data ? (
