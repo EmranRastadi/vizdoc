@@ -40,7 +40,7 @@ export default function ChatContainer() {
       data.append('file', file);
 
       if (file?.blobURL) {
-        data.append('is_blob', true);
+      //  data.append('is_blob', true);
       }
       setUploadLoading(true);
       axios({

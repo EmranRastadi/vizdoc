@@ -15,7 +15,7 @@ const Container = styled.div`
 `;
 
 const LoadingButton = styled.div`
-  height: 50px;
+  
   width: 80px;
   display: flex;
   align-items: center;
@@ -35,18 +35,19 @@ const PreAttachment = styled.div`
 
 const Main = styled.div`
   background: #fff;
-  box-shadow: 0 0 10px 3px rgba(0 0 0 / 15%);
+  
   border-radius: 10px;
   flex: 1;
   margin: 0 15px;
   column-gap: 15px;
-  height: 50px;
+  
   display: flex;
   flex-direction: row;
-  padding: 15px 15px;
+  padding: 10px 10px;
   .active {
-    width: 110px !important;
+  
   }
+ 
 `;
 
 const AttachButton = styled.div`
@@ -92,8 +93,7 @@ const Img = styled.img`
 `;
 
 const MainProg = styled.div`
-  width: 50px;
-  height: 50px;
+  
   display: flex;
   align-items: center;
   justify-content: center;

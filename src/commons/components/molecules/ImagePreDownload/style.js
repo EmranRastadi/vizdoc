@@ -15,7 +15,7 @@ const Container = styled.div`
 
 const ImageLoader = styled.div`
   position: relative;
-  border-radius: 10px;
+  border-radius: 7px;
   margin-left: 15px;
   width: 80px;
   height: 80px;

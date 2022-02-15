@@ -86,6 +86,7 @@ export default function TableContentExperiment(props) {
                 flexDirection: 'row',
                 alignItems: 'center',
                 columnGap: 10,
+                padding:10
               }}
             >
               <CircleUserStatus />
@@ -105,7 +106,7 @@ export default function TableContentExperiment(props) {
               onClick={() => history.push(`/chat/${row.id}`)}
               align="center"
             >
-              {moment(row.created_at).locale('fa').format(' H:m   YYYY/M/D')}
+              {moment(row.created_at).locale('fa').fromNow()}
             </TableCelllCustom>
             <TableCelllCustom
               className="hid-col-res"

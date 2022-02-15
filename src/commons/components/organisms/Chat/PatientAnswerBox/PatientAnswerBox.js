@@ -64,9 +64,9 @@ export default function PatientAnswerBox(props) {
                 </MainProg>
               ) : (
                 <>
-                  <AttachButton onClick={() => setRecorder(true)}>
+                {/*  <AttachButton onClick={() => setRecorder(true)}>
                     <MdKeyboardVoice />
-                  </AttachButton>
+                  </AttachButton>*/}
                   <AttachButton style={{ fontSize: '14px', lineHeight: '13' }}>
                     <input
                       type="file"
@@ -93,10 +93,10 @@ export default function PatientAnswerBox(props) {
                 </LoadingButton>
               ) : (
                 <CheckBoxButton
-                  style={{ width: '۸0px' }}
                   onlyBtn={true}
                   onClick={sendMsg}
                   className="active"
+                  style={{minHeight: 0,padding:0}}
                   title={'ارسال'}
                 />
               )}
