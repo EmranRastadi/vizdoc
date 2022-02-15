@@ -7,7 +7,7 @@ export default function ExperimentNavTop(props) {
   return (
     <Grid container spacing={'3'}>
       <Grid item sm="6" sx="12" className="responsive-box">
-        <Label>آزمایش ها</Label>
+        {/*<Label>آزمایش ها</Label>*/}
       </Grid>
       <Grid item sm="6" sx="12" className="responsive-box">
         <BadgeContainer>

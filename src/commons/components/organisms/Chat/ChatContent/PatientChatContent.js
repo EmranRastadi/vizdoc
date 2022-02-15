@@ -51,7 +51,7 @@ export default function PatientChatContent(props) {
         switch (item.type) {
           case 'normal':
             return (
-              <div key={index} style={{ float: 'right', width: '100%' }}>
+              <div key={index} style={{ float: 'right', width: '100%' ,fontSize:13}}>
                 <WhyDoIt type="you" {...item} />
               </div>
             );

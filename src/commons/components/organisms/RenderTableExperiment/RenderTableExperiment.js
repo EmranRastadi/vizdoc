@@ -23,7 +23,7 @@ export default function RenderTableExperiment(props) {
             }}
             aria-label="simple table"
           >
-            <TableHeaderExperiment />
+            {/*<TableHeaderExperiment />*/}
 
             {data?.data?.data?.orders && !isLoading ? (
               data?.data?.data?.orders.length > 0 ? (

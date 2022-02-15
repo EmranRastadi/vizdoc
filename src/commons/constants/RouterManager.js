@@ -75,6 +75,9 @@ export default function RouterManager() {
         <Route path={'/fail-pay'} axact>
           <FailPay />
         </Route>
+        <Route path={'/'} axact>
+          <Information />
+        </Route>
       </Switch>
     </>
   );

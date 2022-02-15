@@ -24,7 +24,7 @@ export default function Header(props) {
 
   function _renderAge() {
     if (props?.data?.data?.order?.expert?.id.toString() !== userId.toString()) {
-      return props?.data?.data?.order?.expert?.user?.mobile;
+      return props?.data?.data?.order?.expert?.title;
     } else {
       return props?.data?.data?.order?.details?.age + 'ساله';
     }
@@ -49,7 +49,7 @@ export default function Header(props) {
           </UserDetail>
         </Grid>
 
-        <Grid item md={6} xs={12} className="tags">
+       {/* <Grid item md={6} xs={12} className="tags">
           {props?.data?.data?.order?.details?.dr_specialist_price > 0 ? (
             <Tag>پزشک متخصص</Tag>
           ) : null}
@@ -57,7 +57,7 @@ export default function Header(props) {
           {props?.data?.data?.order?.details?.emergency_price > 0 ? (
             <Tag>اورژانسی</Tag>
           ) : null}
-        </Grid>
+        </Grid>*/}
       </Grid>
     </HeaderContainer>
   );

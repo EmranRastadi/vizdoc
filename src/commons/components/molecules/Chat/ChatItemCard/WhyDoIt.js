@@ -12,7 +12,7 @@ export default function WhyDoIt(props) {
       sender={user_id.toString() !== userId.toString() ? 'user' : ''}
       {...props}
     >
-      <div dangerouslySetInnerHTML={{ __html: message }} />
+      <div style={{padding:10}} dangerouslySetInnerHTML={{ __html: message }} />
 
       <ChatCardDate
         date={moment(created_at).locale('fa').format('YYYY/M/D')}

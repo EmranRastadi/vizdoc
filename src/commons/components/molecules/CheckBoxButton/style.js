@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 const Container = styled.div`
-  min-height: 50px;
   border: 1px solid #c4c4c4;
   border-radius: 5px;
   color: #fff;
