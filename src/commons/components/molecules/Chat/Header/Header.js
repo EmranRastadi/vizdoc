@@ -35,7 +35,13 @@ export default function Header(props) {
         <Grid item md={6} xs={12} className="detail">
           <BackButton onClick={() => history.push('/dashboard')} />
           <UserDetail>
-            <UserImage />
+            <UserImage
+              expertFileId={
+                props?.data?.data?.order?.expert?.user?.id != userId
+                  ? props?.data?.data?.order?.expert?.user?.file_id
+                  : null
+              }
+            />
             <UserContent>
               <Label
                 style={{ fontSize: '13px', fontWeight: 700, color: '#fff' }}
@@ -49,7 +55,7 @@ export default function Header(props) {
           </UserDetail>
         </Grid>
 
-       {/* <Grid item md={6} xs={12} className="tags">
+        {/* <Grid item md={6} xs={12} className="tags">
           {props?.data?.data?.order?.details?.dr_specialist_price > 0 ? (
             <Tag>پزشک متخصص</Tag>
           ) : null}

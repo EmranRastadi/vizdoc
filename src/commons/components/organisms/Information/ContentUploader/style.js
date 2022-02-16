@@ -15,9 +15,14 @@ const ContainerImage = styled.div`
   img {
     width: 100%;
     height: 100%;
+    display: ${(props) => props?.theme?.detail?.disp};
   }
 `;
 
+const FileContainer = styled.div`
+  width: 100%;
+  height: 200px;
+`;
 const Detail = styled.div`
   position: absolute;
   height: 40px;
@@ -55,4 +60,11 @@ const Image = styled.img`
   height: 100%;
 `;
 
-export { DetailUplading, Container, ContainerImage, Detail, Image };
+export {
+  DetailUplading,
+  FileContainer,
+  Container,
+  ContainerImage,
+  Detail,
+  Image,
+};

@@ -7,7 +7,7 @@ export default function ImageAdded(props) {
       <ContainerImageAdd>
         <input
           type="file"
-          accept="image/*"
+          accept="image/* , application/pdf"
           onChange={(e) => props.onChange(e)}
         />
         <AiOutlinePlus />

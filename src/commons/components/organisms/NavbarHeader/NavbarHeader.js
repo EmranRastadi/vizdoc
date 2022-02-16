@@ -19,7 +19,7 @@ export default function NavbarHeader() {
   let isAuth = jsCookie.get('loginToken');
   const currentPath = window.location.href;
   function logout() {
-    jsCookie.remove('loginToken');
+    jsCookie.set('loginToken', '');
     jsCookie.remove('userId');
     window.open(currentPath, '_self');
   }
@@ -47,14 +47,34 @@ export default function NavbarHeader() {
             <MenuList open={open} setOpen={setOpen} />
             <Box style={{ flexGrow: 1 }} className="menu-resp"></Box>
             {!isAuth ? (
-              <AiOutlineUser
+              <ExperimentButton
+                background={
+                  'linear-gradient(90deg, rgb(223, 93, 93) 0%, rgb(252, 89, 69) 10%)'
+                }
+                color="#fff"
+                title="ورود یا ثبت نام"
                 onClick={() => setPay(true)}
-                style={{ fontSize: '28px', cursor: 'pointer' }}
+                icon={
+                  <AiOutlineUser
+                    style={{ fontSize: '24px', cursor: 'pointer' }}
+                    color="#fff"
+                  />
+                }
               />
             ) : (
-              <MdOutlineLogout
+              <ExperimentButton
+                color="#fff"
+                background={
+                  'linear-gradient(90deg, rgb(223, 93, 93) 0%, rgb(252, 89, 69) 10%)'
+                }
+                title="خروج"
                 onClick={() => logout()}
-                style={{ fontSize: '28px', cursor: 'pointer' }}
+                icon={
+                  <MdOutlineLogout
+                    color="#fff"
+                    style={{ fontSize: '24px', cursor: 'pointer' }}
+                  />
+                }
               />
             )}
             &nbsp;&nbsp;&nbsp;

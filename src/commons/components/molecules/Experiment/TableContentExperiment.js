@@ -6,6 +6,7 @@ import { Style } from './style';
 import moment from 'jalali-moment';
 import { identifier } from 'stylis';
 import { useHistory } from 'react-router-dom';
+import jsCookie from 'js-cookie';
 
 const TableCelllCustom = styled(TableCell)((theme) => ({
   borderBottom: 'unset',
@@ -42,6 +43,8 @@ const useRowStyles = makeStyles({
 
 export default function TableContentExperiment(props) {
   let classes = useRowStyles();
+  const userId = jsCookie.get('userId');
+
   const history = useHistory();
   function _renderStatusPay(status) {
     if (status === 'pending_payment') {
@@ -63,7 +66,12 @@ export default function TableContentExperiment(props) {
     let gender = state.details?.gender === 'female' ? 'خانم' : 'آقا';
     let pregent = state.details?.pregnant === '1' ? 'باردار' : '';
     let age = state.details?.age + ' ساله';
-    return gender + ' ' + pregent + ' ' + age;
+
+    if (state?.expert?.id.toString() !== userId.toString()) {
+      return state?.expert?.user?.fullname;
+    } else {
+      return gender + ' ' + pregent + ' ' + age;
+    }
   }
 
   return (
@@ -86,10 +94,16 @@ export default function TableContentExperiment(props) {
                 flexDirection: 'row',
                 alignItems: 'center',
                 columnGap: 10,
-                padding:10
+                padding: 10,
               }}
             >
-              <CircleUserStatus />
+              <CircleUserStatus
+                expertFileId={
+                  row?.expert?.id.toString() !== userId.toString()
+                    ? row?.expert?.id.toString()
+                    : null
+                }
+              />
               {_renderWhoIs(row)}
             </TableCelllCustom>
             <TableCelllCustom

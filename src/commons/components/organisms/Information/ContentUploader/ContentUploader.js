@@ -3,7 +3,7 @@ import { Grid } from '@mui/material';
 import ImageAdded from './ImageAdded';
 import ImageUploaded from './ImageUploaded';
 import ImageUploading from './ImageUploading';
-import { Container } from './style';
+import { Container, FileContainer } from './style';
 import { Modal } from '../../../molecules';
 import { InforMationContext } from './../../../../services/Contexts/InformationStore.context';
 import { useCallback, useEffect, useState, useContext } from 'react';
@@ -78,9 +78,15 @@ export default function ContentUploader() {
             parseInt(state.progress) !== 0 &&
             index === state.uploaded.length - 1
           ) {
-            return <ImageUploading src={src} width={state.progress} />;
+            return (
+              <ImageUploading
+                type={item.type}
+                src={src}
+                width={state.progress}
+              />
+            );
           } else {
-            return <ImageUploaded src={src} index={index} />;
+            return <ImageUploaded type={item.type} src={src} index={index} />;
           }
         })}
 
