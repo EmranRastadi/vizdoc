@@ -44,7 +44,6 @@ export default function CompleteInformation(props) {
 
   function gotToNextLevel(e) {
     e.preventDefault();
-    console.log(22222222, state.information);
     if (!state.information.age) {
       notifyError('سن را وارد کنید');
     }

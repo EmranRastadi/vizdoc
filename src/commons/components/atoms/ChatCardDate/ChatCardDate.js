@@ -9,12 +9,12 @@ export default function ChatCardDate(props) {
       {showOf === false ? (
         ''
       ) : status ? (
-        <BsCheckAll className="activated" fontSize={'20px'} />
+        <BsCheckAll className="activated" fontSize={'16px'} />
       ) : (
-        <BsCheck2 fontSize={'20px'} />
+        <BsCheck2 fontSize={'16px'} />
       )}
-      <Label style={{ fontSize: '11px' }}>{time}</Label>
-      <Label style={{ fontSize: '11px' }}>{date}</Label>
+      <Label style={{ fontSize: '9px' }}>{time}</Label>
+      <Label style={{ fontSize: '9px' }}>{date}</Label>
     </Container>
   );
 }

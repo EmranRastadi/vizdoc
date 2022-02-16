@@ -12,20 +12,20 @@ export default function VerifyMobile({
 
       <Grid item xs={'12'}>
         <Label style={{ fontSize: 12, color: '#aaa' }}>
-          لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با
-          استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در
-          ستون و سطرآنچنان که لازم است، و برای شرایط فعلی
+          برای ورود به ویزداک کافیست شماره تلفن همراه خود را وارد کنید و بر روی دکمه ورود یا ثبت نام کلیک کنید.
         </Label>
       </Grid>
 
       <Grid item xs="12" style={{ marginTop: 25 }}>
         <TextField
           dir="rtl"
-          style={{ fontFamily: 'yekan' }}
+          style={{ fontFamily: 'yekan',textAlign:'center', }}
+          inputProps={{style:{textAlign:'center', letterSpacing: 10}}}
           fullWidth
+          type="number"
           onChange={(e) => setMobile(e.target.value)}
           id="outlined-basic"
-          label="شماره موبایل"
+          label="شماره تلفن همراه"
           variant="outlined"
         />
       </Grid>
@@ -35,7 +35,7 @@ export default function VerifyMobile({
           onClick={() => submitFormVerifyMobile()}
           onlyBtn={true}
           className="active"
-          title={'ثبت'}
+          title={'ورود یا ثبت نام'}
         />
       </Grid>
     </div>

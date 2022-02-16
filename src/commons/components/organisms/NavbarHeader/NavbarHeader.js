@@ -7,14 +7,22 @@ import { Container } from '@mui/material';
 import { AiOutlineMenu, AiOutlineUser } from 'react-icons/ai';
 import { ExperimentButton, MenuList } from '../../molecules';
 import logo from '../../../../assets/icons/Path 1305.svg';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useRouteMatch } from 'react-router-dom';
 import MobileModal from '../Information/ContentUploader/MobileModal';
 // import MenuIcon from '@mui/icons-material/Menu';
 import jsCookie from 'js-cookie';
+import { MdOutlineLogout } from 'react-icons/md';
+import { current } from '@reduxjs/toolkit';
 export default function NavbarHeader() {
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
   let isAuth = jsCookie.get('loginToken');
+  const currentPath = window.location.href;
+  function logout() {
+    jsCookie.remove('loginToken');
+    jsCookie.remove('userId');
+    window.open(currentPath, '_self');
+  }
 
   const [pay, setPay] = React.useState(false);
   return (
@@ -38,9 +46,14 @@ export default function NavbarHeader() {
             &nbsp;&nbsp;&nbsp;
             <MenuList open={open} setOpen={setOpen} />
             <Box style={{ flexGrow: 1 }} className="menu-resp"></Box>
-            {!isAuth && (
+            {!isAuth ? (
               <AiOutlineUser
                 onClick={() => setPay(true)}
+                style={{ fontSize: '28px', cursor: 'pointer' }}
+              />
+            ) : (
+              <MdOutlineLogout
+                onClick={() => logout()}
                 style={{ fontSize: '28px', cursor: 'pointer' }}
               />
             )}

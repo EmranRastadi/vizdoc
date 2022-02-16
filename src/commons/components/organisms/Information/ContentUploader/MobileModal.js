@@ -56,7 +56,7 @@ export default function MobileModal(props) {
     <Modal
       status={pay}
       setStatus={setPay}
-      title={finish === true && edit === false ? 'کد تایید' : 'شماره موبایل'}
+      title={finish === true && edit === false ? 'تایید شماره تلفن همراه' : 'ورود به ویزداک'}
     >
       {finish === true && edit === false ? (
         <VerifyCode

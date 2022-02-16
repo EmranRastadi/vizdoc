@@ -37,10 +37,9 @@ export default function Experiment() {
 
   return (
     <MainContainer>
-      <br />
-      <br />
+
       {/*    main template     */}
-      <Container maxWidth="lg" style={{ position: 'relative' }}>
+      <Container maxWidth="lg" style={{ position: 'relative',marginTop:8 }}>
         <ExperimentNavTop onClick={onChangeFilter} />
         {isLoading ? <Loading /> : null}
         <RenderTableExperiment isLoading={isLoading} data={data} />
