@@ -95,6 +95,8 @@ export default function TableContentExperiment(props) {
                 alignItems: 'center',
                 columnGap: 10,
                 padding: 10,
+                background:
+                  row?.last_message?.read_at === null ? '#249abe' : '#ccc',
               }}
             >
               <CircleUserStatus
@@ -107,6 +109,10 @@ export default function TableContentExperiment(props) {
               {_renderWhoIs(row)}
             </TableCelllCustom>
             <TableCelllCustom
+              style={{
+                background:
+                  row?.last_message?.read_at === null ? '#249abe' : '#ccc',
+              }}
               onClick={() => history.push(`/chat/${row.id}`)}
               align="center"
             >
@@ -116,6 +122,10 @@ export default function TableContentExperiment(props) {
               {row.details?.emergency_price > 0 ? <Tag>اورژانسی</Tag> : null}
             </TableCelllCustom>
             <TableCelllCustom
+              style={{
+                background:
+                  row?.last_message?.read_at === null ? '#249abe' : '#ccc',
+              }}
               className="hid-col-res"
               onClick={() => history.push(`/chat/${row.id}`)}
               align="center"
@@ -126,6 +136,10 @@ export default function TableContentExperiment(props) {
               className="hid-col-res"
               onClick={() => history.push(`/chat/${row.id}`)}
               align="center"
+              style={{
+                background:
+                  row?.last_message?.read_at === null ? '#249abe' : '#ccc',
+              }}
             >
               {row.amount} تومان
             </TableCelllCustom>
@@ -135,6 +149,8 @@ export default function TableContentExperiment(props) {
               style={{
                 textAlign: 'left',
                 paddingLeft: 15,
+                background:
+                  row?.last_message?.read_at === null ? '#249abe' : '#ccc',
               }}
             >
               {_renderStatusPay(row.status)}

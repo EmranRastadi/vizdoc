@@ -11,6 +11,7 @@ import {
   Img,
   MainProg,
   LoadingButton,
+  TextBox,
 } from './style';
 import { MdKeyboardVoice } from 'react-icons/md';
 import { useNotifyManager } from '../../../../hooks/Toastify';
@@ -64,7 +65,7 @@ export default function PatientAnswerBox(props) {
                 </MainProg>
               ) : (
                 <>
-                {/*  <AttachButton onClick={() => setRecorder(true)}>
+                  {/*  <AttachButton onClick={() => setRecorder(true)}>
                     <MdKeyboardVoice />
                   </AttachButton>*/}
                   <AttachButton style={{ fontSize: '14px', lineHeight: '13' }}>
@@ -81,12 +82,20 @@ export default function PatientAnswerBox(props) {
                 </>
               )}
 
-              <TxtInput
-                value={answerMsg}
-                onKeyDown={(e) => checkEnterClick(e)}
-                onChange={(e) => setAnswerMsg(e.target.value)}
-                placeholder={'پیام'}
-              />
+              <TextBox>
+                <textarea
+                  style={{
+                    width: '100%',
+                    resize: 'none',
+                    border: 'unset',
+                  }}
+                  value={answerMsg}
+                  // onKeyDown={(e) => checkEnterClick(e)}
+                  onChange={(e) => setAnswerMsg(e.target.value)}
+                  placeholder={'پیام'}
+                ></textarea>
+              </TextBox>
+
               {isLoading && !isSuccess ? (
                 <LoadingButton>
                   <CircularProgress />
@@ -96,7 +105,7 @@ export default function PatientAnswerBox(props) {
                   onlyBtn={true}
                   onClick={sendMsg}
                   className="active"
-                  style={{minHeight: 0,padding:0}}
+                  style={{ minHeight: 0, padding: 0, height: '40px' }}
                   title={'ارسال'}
                 />
               )}
