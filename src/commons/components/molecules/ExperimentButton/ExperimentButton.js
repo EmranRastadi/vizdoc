@@ -1,8 +1,8 @@
 import { Button } from '@mui/material';
-import { Label } from '../../atoms';
-import { Container } from './style';
 import { useHistory } from 'react-router-dom';
 import userIcon from '../../../../assets/icons/doctor-checkmark-2.svg';
+import { Label } from '../../atoms';
+import { Container } from './style';
 
 export default function ExperimentButton({
   onClick,
@@ -10,7 +10,12 @@ export default function ExperimentButton({
   icon,
   title,
   background,
-  fontSize=12,
+  fontSize = 12,
+  boderRadius = 0,
+  borderWidth = 0,
+  borderColor = '#00000000',
+  border=''
+
 }) {
   const history = useHistory();
   return (
@@ -19,6 +24,10 @@ export default function ExperimentButton({
         background: background
           ? background
           : 'linear-gradient(to left, #a7bb2a, #d8e94a)',
+          boderRadius,
+          borderWidth,
+          borderColor,
+          border
       }}
     >
       <Button onClick={() => (onClick ? onClick() : history.push('/start'))}>

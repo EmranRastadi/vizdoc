@@ -1,18 +1,17 @@
-import * as React from 'react';
+import { Container } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import IconButton from '@mui/material/IconButton';
-import { Container } from '@mui/material';
-import { AiOutlineMenu, AiOutlineUser } from 'react-icons/ai';
-import { ExperimentButton, MenuList } from '../../molecules';
-import logo from '../../../../assets/icons/Path 1305.svg';
-import { useHistory, useRouteMatch } from 'react-router-dom';
-import MobileModal from '../Information/ContentUploader/MobileModal';
+import Toolbar from '@mui/material/Toolbar';
 // import MenuIcon from '@mui/icons-material/Menu';
 import jsCookie from 'js-cookie';
+import * as React from 'react';
+import { AiOutlineUser } from 'react-icons/ai';
 import { MdOutlineLogout, MdOutlinePhone } from 'react-icons/md';
-import { current } from '@reduxjs/toolkit';
+import { useHistory } from 'react-router-dom';
+import logo from '../../../../assets/icons/Path 1305.svg';
+import { ExperimentButton, MenuList } from '../../molecules';
+import MobileModal from '../Information/ContentUploader/MobileModal';
 export default function NavbarHeader() {
   const [open, setOpen] = React.useState(false);
   const history = useHistory();
@@ -49,8 +48,9 @@ export default function NavbarHeader() {
             {!isAuth ? (
               <ExperimentButton
                 background={
-                  'linear-gradient(90deg, rgb(223, 93, 93) 0%, rgb(252, 89, 69) 10%)'
+                  '#00000000'
                 }
+                borderWidth={.6} borderColor='#fff' borderRadius={3} border='solid'
                 color="#fff"
                 title="ورود یا ثبت نام"
                 onClick={() => setPay(true)}
