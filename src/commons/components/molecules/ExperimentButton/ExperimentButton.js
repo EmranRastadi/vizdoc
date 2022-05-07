@@ -10,6 +10,7 @@ export default function ExperimentButton({
   icon,
   title,
   background,
+  fontSize=12,
 }) {
   const history = useHistory();
   return (
@@ -25,7 +26,7 @@ export default function ExperimentButton({
         <Label
           className={'expButton'}
           style={{
-            fontSize: 12,
+            fontSize,
             color: color ? color : '#212121',
             fontWeight: 100,
           }}
